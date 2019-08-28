@@ -5,19 +5,21 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{B8B5471C-2CD0-412D-A69E-66BB74A315DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.RFPSystem", "Application.RFPSystem\Application.RFPSystem.csproj", "{050408A7-4A80-4472-AE57-B3E696233F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.RFPSystem", "Application.RFPSystem\Application.RFPSystem.csproj", "{050408A7-4A80-4472-AE57-B3E696233F3E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{4391DBF5-B427-4DC9-9249-A671F3E890FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.DataObjects", "Common.DataObjects\Common.DataObjects.csproj", "{29BF34DF-8105-4058-86E5-685159D7E2C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.DataObjects", "Common.DataObjects\Common.DataObjects.csproj", "{29BF34DF-8105-4058-86E5-685159D7E2C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rule Engine", "Rule Engine", "{6226AAAE-B409-4923-9C08-749CE3C45BDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.RulesSetup", "Application.RulesSetup\Application.RulesSetup.csproj", "{1DB1B3EA-58B7-4133-98C5-7E484312D43B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.RulesSetup", "Application.RulesSetup\Application.RulesSetup.csproj", "{1DB1B3EA-58B7-4133-98C5-7E484312D43B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Async Actions", "Async Actions", "{886303CE-BCBF-43FE-9E60-F1F1DC3FF871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applications.Operations", "Applications.Operations\Applications.Operations.csproj", "{D56AF168-B5EF-4784-A1E9-B3119581A443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Applications.Operations", "Applications.Operations\Applications.Operations.csproj", "{D56AF168-B5EF-4784-A1E9-B3119581A443}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.RFPUI", "Application.RFPUI\Application.RFPUI.csproj", "{39D4EB21-B33B-46BA-BE04-E5B785079D80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{D56AF168-B5EF-4784-A1E9-B3119581A443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D56AF168-B5EF-4784-A1E9-B3119581A443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D56AF168-B5EF-4784-A1E9-B3119581A443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39D4EB21-B33B-46BA-BE04-E5B785079D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39D4EB21-B33B-46BA-BE04-E5B785079D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39D4EB21-B33B-46BA-BE04-E5B785079D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39D4EB21-B33B-46BA-BE04-E5B785079D80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{29BF34DF-8105-4058-86E5-685159D7E2C9} = {4391DBF5-B427-4DC9-9249-A671F3E890FF}
 		{1DB1B3EA-58B7-4133-98C5-7E484312D43B} = {6226AAAE-B409-4923-9C08-749CE3C45BDC}
 		{D56AF168-B5EF-4784-A1E9-B3119581A443} = {886303CE-BCBF-43FE-9E60-F1F1DC3FF871}
+		{39D4EB21-B33B-46BA-BE04-E5B785079D80} = {B8B5471C-2CD0-412D-A69E-66BB74A315DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98433DFA-6BF4-4AB4-B46C-85E12C0FBE79}

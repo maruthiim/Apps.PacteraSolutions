@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-lg-3 col-md-3 sideContent">
+    <div class="welcomeContent">
+      <h1>Welcome to <i>Pactera</i></h1>
+    </div>
+    <div>
+      <div [ngClass]="{'gt-morning': period === 'MORNING', 'gt-afternoon': period === 'AFTERNOON', 'gt-evening': period === 'EVENING' }"></div>
+      <h2>GOOD {{period}}</h2>
+    </div>
+    <div class="border"></div>
+    <div class="imageContent">
+      <!-- <img src="../../assets/images/Project_Proposal.png" alt="Smiley face" height="42" width="42"> -->
+    </div>
+  </div>
+  <div class="col-lg-9 col-md-9">
+    <div class="loginContent">
+      <div class="loginLogo">
+        <img src="../../assets/images/LoginLogo.jpg" alt="Smiley face" height="40" width="150">
+      </div>
+      <div class="loginFormContent">
+        <br />
+        <img src="../../assets/images/Login_User.png" alt="Smiley face" height="100" width="100">
+        <div class="loginLabel">
+          <label>Login</label>
+        </div>
+        <div class="loginFormDiv">
+          <form class="form-group loginForm" [formGroup]="loginForm">
+            <div class="input-container">
+              <div class="icon">
+                <i class="glyphicon glyphicon-user"></i>
+              </div>
+              <input required formControlName="username" type="text" id="formUserID" class="input-field" placeholder="USER ID">
+            </div>
+            <div class="input-container">
+              <div class="icon">
+                <i class="glyphicon glyphicon-lock"></i>
+              </div>
+              <input required formControlName="password" type="password" id="formPassword" class="input-field" placeholder="PASSWORD">
+            </div>
+            <br />
+            <!-- Send button -->
+            <button class="btn btn-primary basicMargin" color="info" block="true" type="button" (click)="onSubmit()">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

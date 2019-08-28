@@ -1,0 +1,31 @@
+.table-div {
+  width: 100%;
+  max-height: calc(100vh - 230px );
+  overflow: auto;
+  padding: 0;
+}
+
+mat-row:nth-child(odd) {
+  background: #F2F2F2;
+}
+
+mat-header-row {
+  background-color: gray;
+}
+
+.mat-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: white;
+}
+
+mat-cell {
+  font-size: 12px;
+}
+
+mat-header-cell {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+} 

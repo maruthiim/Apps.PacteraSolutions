@@ -1,0 +1,84 @@
+<!--<div class="pageTitle"><span>New Porposal</span></div>-->
+<div class="multiColorLine"></div>
+<div class="page">
+  <div class="container-fluid">
+    <div class="title"> New Request For Proposal</div>
+    <div class="proposalDiv">
+      <!--<div class="info">
+        <p> Please fill all the required information </p>
+      </div>-->
+      <form [formGroup]="newProposalForm">
+        <div class="row">
+          <div class="col-lg-3">
+            <mat-form-field>
+              <mat-select matinput placeholder="Request Type" formControlName="requestType" required>
+                <mat-option value="option1">Request Type 1</mat-option>
+                <mat-option value="option2">Request Type 2</mat-option>
+                <mat-option value="option3">Request Type 3</mat-option>
+                <mat-option value="option3">Request Type 4</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3">
+            <mat-form-field>
+              <input matInput placeholder="Title" formControlName="title" required maxlength="50">
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3">
+            <mat-form-field>
+              <input matInput placeholder="Customer" formControlName="customer" required maxlength="50">
+            </mat-form-field>
+          </div>
+          <div class="col-lg-3">
+            <mat-form-field>
+              <input matInput placeholder="Scope" formControlName="scope" required maxlength="250">
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6">
+            <mat-form-field>
+              <textarea rows="3" matInput multiline placeholder="Description" formControlName="description" required maxlength="250"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-lg-6">
+            <mat-form-field>
+              <textarea rows="3" matInput placeholder="Additional Information" formControlName="additionalInformation" required maxlength="250"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div><h3>Documnets to upload</h3></div>
+        <div class="row">
+          <div formArrayName="documents" *ngFor="let doc of newProposalForm.get('documents').controls; let i = index;">
+            <div class="col-lg-4" [formGroupName]="i">
+              <mat-form-field>
+                <input matInput placeholder="Upload Document" formControlName="document" required readonly maxlength="50">
+              </mat-form-field>
+              <input type="file" (change)="fileInput($event, i)" id="file+{{i}}" class="hidden"/>
+            </div>
+            <div class="col-lg-1">
+              <div class="row">
+                <div class="col-md-6">
+                  <div>
+                    <label for="file+{{i}}"><mat-icon>attachment</mat-icon></label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div *ngIf="newProposalForm.get('documents').controls.length > 1" class="btn" (click)="removeDocument(i)">
+                    <mat-icon>remove_circle</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <div class="btn" (click)="addNewDocument()">
+              <mat-icon>add_circle</mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary pull-right" type="submit" (click)="submit()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
