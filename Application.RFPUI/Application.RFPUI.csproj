@@ -26,6 +26,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\core\AngularMaterialModule.ts" />
     <None Remove="ClientApp\src\app\global\constants.ts" />
+    <None Remove="ClientApp\src\app\global\data-json.ts" />
     <None Remove="ClientApp\src\app\routes\routes.ts" />
     <None Remove="ClientApp\src\app\view-models\proposal-request-view-model.ts" />
   </ItemGroup>
@@ -33,6 +34,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\core\AngularMaterialModule.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\global\constants.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\global\data-json.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\routes\routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\view-models\proposal-request-view-model.ts" />
   </ItemGroup>

@@ -29,16 +29,18 @@
 
 <div class="container-fluid">
   <nav class="{{!sideBarFlag?'sidebar':'sidebar sclose'}}" id="sidebar">
-    <button (click)="toggleFunction()" id="btnToggle" class="btn bnt-link btn-block btn-toggle">
-      <i *ngIf="!sideBarFlag" class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i>
-      <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i>
-      <i *ngIf="sideBarFlag" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></i>
-    </button>
+
     <ul class="list-group">
       <li *ngFor="let menu of MenuList" class="list-group-item" routerLinkActive="active" [routerLink]="menu.path">
         <a><i class="glyphicon" [ngClass]="menu.class" aria-hidden="true"></i><span>{{menu.title}}</span></a>
       </li>
     </ul>
+
+    <button (click)="toggleFunction()" id="btnToggle" class="btn bnt-link btn-block btn-toggle">
+      <i *ngIf="!sideBarFlag" class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i>
+      <!--<i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i>-->
+      <i *ngIf="sideBarFlag" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></i>
+    </button>
 
   </nav>
     <main class="{{!sideBarFlag?'main':'main sopen'}}" role="main" id="main">

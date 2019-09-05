@@ -18,7 +18,7 @@ export class ProposalsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  displayedColumns = ['id', 'requestType', 'requestCode', 'title', 'status', 'scope', 'createdBy', 'createDate',
+  displayedColumns = ['action', 'id', 'requestType', 'requestCode', 'title', 'status', 'scope', 'createdBy', 'createDate',
     'modifiedBy', 'mofdifiedDate'];
 
 

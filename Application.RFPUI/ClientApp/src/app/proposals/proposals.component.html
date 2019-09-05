@@ -3,9 +3,18 @@
 <div class="page">
   <div class="row">
     <div class="col-md-3">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="filterText" placeholder="Filter">
-      </mat-form-field>
+      <!--<mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="filterText" placeholder="Filter">
+      </mat-form-field>-->
+      <div class="searchBox">
+        <label class="searchButton" href="#">
+          <i class="material-icons">
+            search
+          </i>
+        </label>
+        <input matInput class="searchInput" type="text" name="" (keyup)="applyFilter($event.target.value)" [(ngModel)]="filterText" placeholder="Search..."/>
+
+      </div>
     </div>
     <div class="col-md-9 text-right">
       <div class="col-md-5">
@@ -22,12 +31,16 @@
     </mat-paginator>
     <div class="table-div">
       <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="action" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button class="btn btnMd" [routerLink]="['/Home/ViewProposal',element.id]">View</button>
+          </mat-cell>
+        </ng-container>
         <ng-container matColumnDef="id" class="container">
           <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Proposal ID </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <a fxFlexFill class="mat-row-link cell">
-              {{element.id}}
-            </a>
+            <span class="sort-header">{{element.id}}</span>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="requestType" class="container">
@@ -84,12 +97,6 @@
             <span class="sort-header">{{element.mofdifiedDate | date: 'MMMM dd, yyyy hh:mm a'}}</span>
           </mat-cell>
         </ng-container>
-        <!--<ng-container matColumnDef="crD_DT" class="container">
-          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Created Date </mat-header-cell>
-          <mat-cell *matCellDef="let element" class="cell">
-            <span class="sort-header">{{element.crD_DT | date: 'MMMM dd, yyyy hh:mm a'}}</span>
-          </mat-cell>
-        </ng-container>-->
         <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
       </mat-table>

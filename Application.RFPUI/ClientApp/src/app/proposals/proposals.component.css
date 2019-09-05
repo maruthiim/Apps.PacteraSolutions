@@ -5,12 +5,24 @@
   padding: 0;
 }
 
+mat-table {
+  width: 100%;
+  min-width: 1500px;
+  padding: 0;
+}
+
+mat-row {
+  margin-right: 0px;
+  margin-left: 0px;
+  height: 30px;
+}
+
 mat-row:nth-child(odd) {
   background: #F2F2F2;
 }
 
 mat-header-row {
-  background-color: gray;
+  background-color: #00163b;
 }
 
 .mat-header-row {
@@ -28,4 +40,88 @@ mat-header-cell {
   font-size: 14px;
   font-weight: bold;
   color: white;
-} 
+}
+
+mat-cell:nth-child(1) {
+  margin-left: 0px 15px 0px 15px;
+  padding: 20px;
+  width: 100px;
+  flex: none;
+  float: left;
+  font-size: 12px;
+}
+
+mat-header-cell:nth-child(1) {
+  margin-left: 0px 15px 0px 15px;
+  padding: 20px;
+  width: 100px;
+  flex: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+mat-cell:nth-child(2) {
+  margin-left: 0px 15px 0px 15px;
+  padding: 20px;
+  width: 140px;
+  flex: none;
+  float: left;
+  font-size: 12px;
+}
+
+mat-header-cell:nth-child(2) {
+  margin-left: 0px 15px 0px 15px;
+  padding: 20px;
+  width: 140px;
+  flex: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btnMd {
+  background-color: palegoldenrod;
+}
+
+.searchBox {
+  position: absolute;
+  top: 8px;
+  left: 25px;
+  background: #F2F2F2;
+  height: 40px;
+  border-radius: 40px;
+  padding: 4px 6px;
+  width: 300px;
+}
+
+  .searchBox .material-icons {
+    font-size: 18px;
+  }
+
+  .searchButton {
+    color: black;
+    float: left;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: goldenrod;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: auto;
+    outline: none;
+  }
+
+.searchInput {
+  border: none;
+  background: none;
+  outline: none;
+  float: right;
+  padding: 0 6px;
+  color: black;
+  font-size: 16px;
+  line-height: 35px;
+  width: 240px;
+}
+
+
+

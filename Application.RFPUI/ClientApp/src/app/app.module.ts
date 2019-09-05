@@ -18,6 +18,7 @@ import { MasterComponent } from './master/master.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProposalsComponent } from './proposals/proposals.component';
 import { NewProposalComponent } from './new-proposal/new-proposal.component';
+import { ViewProposalComponent } from './view-proposal/view-proposal.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NewProposalComponent } from './new-proposal/new-proposal.component';
     DashboardComponent,
     ProposalsComponent,
     NewProposalComponent,
+    ViewProposalComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
