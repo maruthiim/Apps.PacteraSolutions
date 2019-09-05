@@ -93,9 +93,9 @@ export class ViewProposalComponent implements OnInit {
       if (data.documents.length > 0) {
         this.removeDocument(0);
         this.existingDocuments = data.documents;
-        // for (let i = 0; i < data.documents.length; i++) {
-        //  this.addNewDocument();
-        // }
+         for (let i = 0; i < data.documents.length; i++) {
+          this.addNewDocument();
+         }
       }
       if (data.questionnaire.length > 0) {
         this.removeQuestionnaire(0);

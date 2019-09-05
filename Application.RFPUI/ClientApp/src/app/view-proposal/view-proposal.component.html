@@ -221,7 +221,7 @@
           </mat-expansion-panel-header>
 
           <div class="documentSection">
-            <div class="row">
+            <!--<div class="row">
               <div class="col-lg-1 docmentDiv" *ngFor="let doc of existingDocuments">
                 <div class="docment">
                   <label>{{doc.documentName}}</label>
@@ -229,7 +229,7 @@
                   <a href="{{doc.documentStream}}" download="{{doc.documentName}}">Download</a>
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="row">
               <div formArrayName="documents" *ngFor="let X of proposalForm.get('documents')['controls']; let i = index;">
                 <div class="col-lg-4" [formGroupName]="i">
