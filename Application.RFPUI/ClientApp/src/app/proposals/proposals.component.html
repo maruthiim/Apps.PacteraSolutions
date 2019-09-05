@@ -1,0 +1,105 @@
+<!--<div class="pageTitle"><span>Porposal Requests</span></div>-->
+<div class="multiColorLine"></div>
+<div class="page">
+  <div class="row">
+    <div class="col-md-3">
+      <!--<mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" [(ngModel)]="filterText" placeholder="Filter">
+      </mat-form-field>-->
+      <div class="searchBox">
+        <label class="searchButton" href="#">
+          <i class="material-icons">
+            search
+          </i>
+        </label>
+        <input matInput class="searchInput" type="text" name="" (keyup)="applyFilter($event.target.value)" [(ngModel)]="filterText" placeholder="Search..."/>
+
+      </div>
+    </div>
+    <div class="col-md-9 text-right">
+      <div class="col-md-5">
+
+      </div>
+      <div class="col-md-4" style="float:right;padding-top:10px;">
+        <button class="btn" (click)="newProposal()">New Proposal</button>
+      </div>
+    </div>
+  </div>
+  <!--Mat Table-->
+  <div>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons>
+    </mat-paginator>
+    <div class="table-div">
+      <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="action" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button class="btn btnMd" [routerLink]="['/Home/ViewProposal',element.id]">View</button>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="id" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Proposal ID </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="sort-header">{{element.id}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="requestType" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Request Type </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.requestType}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="requestCode" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Request Code </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.requestCode}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="title" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Title </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.title}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.status}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="scope" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Scope </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.scope}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="createdBy" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Created By </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.createdBy}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="createDate" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Create Date </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.createDate | date: 'MMMM dd, yyyy hh:mm a'}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="modifiedBy" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Modified By </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.modifiedBy}}</span>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="mofdifiedDate" class="container">
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Mofdified Date </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="cell">
+            <span class="sort-header">{{element.mofdifiedDate | date: 'MMMM dd, yyyy hh:mm a'}}</span>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.pageTitle {
+  text-align: center;
+  height: 30px;
+  /*background-color: lightblue;*/
+  background: linear-gradient(to right,white, gray, gray, white);
+  color: white;
+  margin: 10px;
+  padding: 5px;
+  /*border-left: 25px solid darkgray;*/
+  /*border-radius: 25px;*/
+}
+
+.page {
+  width: 100%;
+  height: calc( 100vh - 75px );
+  overflow: auto;
+  padding-left: 5px;
+}
+
+.multiColorLine {
+  text-align: center;
+  position: relative;
+  line-height: 0px;
+  background: #fff;
+  height: 0px;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+  .multiColorLine:after {
+    /*background: linear-gradient(to right,lightcoral 9.5%, white 9.5%, white 10%,goldenrod 10%, goldenrod 29.5%, white 29.5%, white 30%,lightgreen 30%, lightgreen 39.5%, white 39.5%, white 40%, #e84f47 50%, #e84f47 75%, #65c1ac 75%);*/
+    background: linear-gradient(to right,lightcoral 9.5%,white 9.5%,white 10%,goldenrod 10%,goldenrod 29.5%, white 29.5%, white 30%, lightgreen 30%, lightgreen 39.5%, white 39.5%, white 40%, lightcoral 40%, lightcoral 49.5%, white 49.5%, white 50%, lightblue 50%, lightblue 59.5%, white 59.5%, white 60%, goldenrod 60%, goldenrod 79.5%, white 79.5%, white 80%, lightgreen 80%, lightgreen 89.5%, white 89.5%, white 90%, lightcoral 90%);
+    position: absolute;
+    content: '';
+    height: 6px;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+
+.title {
+  padding-left:5px;
+  font-size: 24px;
+  font-family: Helvetica;
+  font-style:italic;
+}
+
+mat-form-field {
+  width:100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+

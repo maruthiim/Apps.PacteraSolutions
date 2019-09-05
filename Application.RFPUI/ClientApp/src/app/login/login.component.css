@@ -1,0 +1,122 @@
+.sideContent {
+  background-color: #007bff; /*lightseagreen*/
+  height: 810px;
+  color: white;
+  font-family: "Open Sans",sans-serif;
+  text-align: center;
+  padding: 30px;
+  background: url('../../assets/images/Back_3.png') no-repeat center/500px 900px;
+  /* filter: grayscale(100%) contrast(5%); */
+}
+
+.welcomeContent {
+  margin-top: 100px;
+  margin-bottom: 150px;
+}
+
+.gt-morning {
+  height: 50px;
+  mask: url('../../assets/images/morning.svg') center/50px 50px no-repeat;
+  background-color: white;
+}
+
+.gt-afternoon {
+  height: 50px;
+  mask: url('../../assets/images/afternoon.svg') center/50px 50px no-repeat;
+  background-color: white;
+}
+
+.gt-evening {
+  height: 50px;
+  mask: url('../../assets/images/evening.svg') center/50px 50px no-repeat;
+  background-color: white;
+}
+
+.border {
+  width: 100% !important;
+  border-color: white !important;
+  border-bottom: 2px solid whitesmoke !important;
+  margin-top: 50px;
+  opacity: .5;
+}
+
+.imageContent {
+  height: 300px;
+  mask: url('../../assets/images/Project_Proposal.png') center/250px 250px no-repeat;
+  background-color: white;
+}
+
+.loginContent {
+  /* text-align: center; */
+  margin-top: 100px;
+  margin-left: 500px;
+  height: 500px;
+  width: 500px;
+  text-align: center;
+}
+
+.loginFormContent {
+  /* background-image: url('../../assets/images/login_wallpaper1.jpg'); */
+  height: 450px;
+  border: 1px solid gray;
+  border-radius: 25px;
+}
+
+.loginLogo {
+  margin-bottom: 50px;
+}
+
+.loginLabel {
+  font-size: 26px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: gray;
+}
+
+.loginFormDiv {
+  margin-top: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.loginForm {
+  margin: 30px 50px 50px 50px;
+}
+
+.basicMargin {
+  margin: 5px;
+}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px;
+  outline: none;
+  font-size: 16px;
+}
+
+  .input-field:focus {
+    border: 2px solid rgb(6, 48, 90);
+  }
+
+.icon {
+  padding: 20px;
+  background: rgb(6, 48, 90);
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.btn {
+  background: rgb(6, 48, 90);
+  height: 50px;
+  width: 100%;
+  font-size: 16px;
+}

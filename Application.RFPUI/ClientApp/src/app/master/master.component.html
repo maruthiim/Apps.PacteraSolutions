@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default">
+  <div class="row container-fluid">
+    <div class="col-lg-6 navbar-header">
+      <a class="imgContent" routerLink="/dashboard">
+        <img alt="Pactera" class="imagePactera" src="assets/images/TopNavLogo.png">
+        
+      </a>
+      
+      <!--<a class="imgContent" routerLink="/dashboard">
+        <img alt="RFP" class="imgRFP" src="assets/images/RFP2.png">
+      </a>-->
+      <label class="devider"> | </label>
+      <label class="RFP"> RFP </label>
+      <!--<label class="RFPLabel">REQUEST FOR PROPOSAL</label>-->
+    </div>
+
+    <div class="col-lg-6">
+      <div class="navbar-right">
+        <div class="profileUser">
+          <label>Welcome : Aravindu Kumar Gattu</label>
+          <a class="pull-right" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+        </div>
+
+      </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container-fluid">
+  <nav class="{{!sideBarFlag?'sidebar':'sidebar sclose'}}" id="sidebar">
+
+    <ul class="list-group">
+      <li *ngFor="let menu of MenuList" class="list-group-item" routerLinkActive="active" [routerLink]="menu.path">
+        <a><i class="glyphicon" [ngClass]="menu.class" aria-hidden="true"></i><span>{{menu.title}}</span></a>
+      </li>
+    </ul>
+
+    <button (click)="toggleFunction()" id="btnToggle" class="btn bnt-link btn-block btn-toggle">
+      <i *ngIf="!sideBarFlag" class="glyphicon glyphicon-triangle-left" aria-hidden="true"></i>
+      <!--<i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i>-->
+      <i *ngIf="sideBarFlag" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></i>
+    </button>
+
+  </nav>
+    <main class="{{!sideBarFlag?'main':'main sopen'}}" role="main" id="main">
+      <div class="main-panel">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+</div>
+

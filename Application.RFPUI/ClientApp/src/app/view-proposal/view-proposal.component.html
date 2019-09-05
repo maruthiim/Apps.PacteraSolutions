@@ -1,0 +1,345 @@
+<div class="multiColorLine"></div>
+<div class="page">
+  <div class="pageTitle"><span><b>Porposal: </b>  IKEA </span></div>
+  <div class="container-fluid">
+    <form [formGroup]="proposalForm">
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>Journey of Proposal</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="row timeline">
+            <div class="col-lg-2 dotted-row" *ngFor="let journey of RequestJourney">
+              <label>{{journey.Name}}</label><br />
+              <div>
+                <img class="TimeLineCard" src="{{getProcessImage(journey.statusId)}}" alt="Image Here"><br />
+              </div>
+              <label>{{journey.status}}</label><br />
+              <label>{{journey.dateTime}}</label>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br />
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>Journey of Proposal</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div>
+            <div class="journeyDiv">
+              <!--<div *ngFor="let journey of journeyData; let i = index;">
+            <div class="circle"> Step</div>
+            <div class="dash"></div>
+          </div>-->
+              <div class="circle"> Step 1</div>
+              <div class="dash"></div>
+              <div class="circle"> Step 2</div>
+              <div class="dash"></div>
+              <div class="circle"> Step 3</div>
+              <div class="dash"></div>
+              <div class="circle"> Step 4</div>
+              <div class="dash"></div>
+              <div class="circle"> Step 5</div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br />
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>Basic Information</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div>
+            <div class="row">
+              <div class="col-lg-3">
+                <mat-form-field>
+                  <mat-select matinput placeholder="Request Type" formControlName="requestType" required>
+                    <mat-option value="option1">Request Type 1</mat-option>
+                    <mat-option value="option2">Request Type 2</mat-option>
+                    <mat-option value="option3">Request Type 3</mat-option>
+                    <mat-option value="option3">Request Type 4</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-3">
+                <mat-form-field>
+                  <input matInput placeholder="Customer" formControlName="customer" required maxlength="50">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-3">
+                <mat-form-field>
+                  <input matInput placeholder="Location" formControlName="location" required maxlength="50">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-3">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker1" placeholder="Requested Date" required readonly formControlName="requestedDate">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6">
+                <mat-form-field>
+                  <input matInput placeholder="Title" formControlName="title" required maxlength="50">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6">
+                <mat-form-field>
+                  <input matInput placeholder="Scope" formControlName="scope" required maxlength="250">
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6">
+                <mat-form-field>
+                  <textarea rows="2" matInput multiline placeholder="Description" formControlName="description" required maxlength="250"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6">
+                <mat-form-field>
+                  <textarea rows="2" matInput multiline placeholder="Additional Information" formControlName="additionalInformation" required maxlength="250"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <br />
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>RFP Schedule</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="scheduleSection">
+            <div class="row" formArrayName="schedule" *ngFor="let X of proposalForm.get('schedule')['controls']; let i = index;">
+              <div [formGroupName]="i">
+                <div class="col-lg-4">
+                  <mat-form-field>
+                    <input matInput placeholder="Milestone" formControlName="milestone" required maxlength="100">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-2">
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Start Date" required formControlName="scheduleStartDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-2">
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker3" placeholder="End Date" required formControlName="scheduleEndDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-3">
+                  <mat-form-field>
+                    <input matInput placeholder="Remarks" formControlName="remarks" required maxlength="100">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-1">
+                  <div *ngIf="proposalForm.get('schedule').controls.length > 1" class="btn" (click)="removeSchedule(i)">
+                    <mat-icon>remove_circle</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1">
+              <div class="btn" (click)="addNewSchedule()">
+                <mat-icon>add_circle</mat-icon>
+              </div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <br />
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>Documents</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="documentSection">
+            <div class="row">
+              <div formArrayName="documents" *ngFor="let X of proposalForm.get('documents')['controls']; let i = index;">
+                <div class="col-lg-4" [formGroupName]="i">
+                  <mat-form-field>
+                    <input matInput placeholder="Upload Document" formControlName="documentName" required readonly maxlength="50">
+                  </mat-form-field>
+                  <input type="file" (change)="fileInput($event, i)" id="file+{{i}}" class="hidden" />
+                </div>
+                <div class="col-lg-1">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div>
+                        <label for="file+{{i}}"><mat-icon>attachment</mat-icon></label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div *ngIf="proposalForm.get('documents').controls.length > 1" class="btn" (click)="removeDocument(i)">
+                        <mat-icon>remove_circle</mat-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-1">
+                <div class="btn" (click)="addNewDocument()">
+                  <mat-icon>add_circle</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <br />
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>Documents</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="documentSection">
+            <!--<div class="row">
+              <div class="col-lg-1 docmentDiv" *ngFor="let doc of existingDocuments">
+                <div class="docment">
+                  <label>{{doc.documentName}}</label>
+                  <img src="{{getDocumentImage(doc.documentExt)}}" alt="Document Here">
+                  <a href="{{doc.documentStream}}" download="{{doc.documentName}}">Download</a>
+                </div>
+              </div>
+            </div>-->
+            <div class="row">
+              <div formArrayName="documents" *ngFor="let X of proposalForm.get('documents')['controls']; let i = index;">
+                <div class="col-lg-4" [formGroupName]="i">
+                  <mat-form-field>
+                    <input matInput placeholder="Upload Document" formControlName="documentName" required readonly maxlength="50">
+                  </mat-form-field>
+                  <input type="file" (change)="fileInput($event, i)" id="file+{{i}}" class="hidden" />
+                </div>
+                <div class="col-lg-1">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div>
+                        <label for="file+{{i}}"><mat-icon>attachment</mat-icon></label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div *ngIf="proposalForm.get('documents').controls.length > 1" class="btn" (click)="removeDocument(i)">
+                        <mat-icon>remove_circle</mat-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-1">
+                <div class="btn" (click)="addNewDocument()">
+                  <mat-icon>add_circle</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <br />
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>Questionnaire</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="questionnaireSection">
+            <div formArrayName="questionnaire" *ngFor="let X of proposalForm.get('questionnaire')['controls']; let i = index;">
+              <div class="questionnaire" [formGroupName]="i">
+                <div class="pull-right btn crossbtn" *ngIf="proposalForm.get('questionnaire').controls.length > 1" (click)="removeQuestionnaire(i)">
+                  <mat-icon>highlight_off</mat-icon>
+                </div>
+                <br />
+                <div>
+                  <mat-form-field>
+                    <input matInput placeholder="Area" formControlName="questionnaireArea" required maxlength="50">
+                  </mat-form-field>
+                </div>
+                <div formArrayName="questions" *ngFor="let Y of X.get('questions')['controls']; let j = index;">
+                  <div class="question" [formGroupName]="j">
+                    <div class="pull-right btn crossbtn" *ngIf="X.get('questions').controls.length > 1" (click)="removeQuestion(i,j)">
+                      <mat-icon>highlight_off</mat-icon>
+                    </div>
+                    <br />
+                    <div>
+                      <mat-form-field>
+                        <textarea rows="1" matInput multiline placeholder="Question" formControlName="question" required maxlength="150"></textarea>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <textarea rows="2" matInput multiline placeholder="Answer" formControlName="answer" required maxlength="300"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <br />
+                </div>
+                <div>
+                  <button type="button" class="btn btn-sm btn-info" (click)="addNewQuestion(i)">New Question</button>
+                </div>
+              </div>
+              <br />
+            </div>
+            <div>
+              <button type="button" class="btn btn-sm btn-info" (click)="addNewQuestionnaire()">New Area</button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <br />
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+            <mat-panel-title>Additional Information</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div>
+            <mat-form-field>
+              <textarea rows="4" matInput multiline placeholder="Additional Information" formControlName="additionalInformation" required maxlength="300"></textarea>
+            </mat-form-field>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <br />
+
+      <div class="row">
+        <button class="btn btn-primary pull-right" type="submit" (click)="submit()">Submit</button>
+      </div>
+    </form>
+    
+  </div>
+</div>
