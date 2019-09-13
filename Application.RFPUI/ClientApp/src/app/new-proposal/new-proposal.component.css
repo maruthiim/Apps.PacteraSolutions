@@ -8,6 +8,53 @@
   font-size: 30px;
 }
 
+.documentDiv {
+  text-align: center;
+  border: 1px dashed lightgray;
+  margin: 5px 10px;
+}
+
+.documentImg {
+  display: block;
+  margin: auto;
+}
+
+.documentImg img {
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+}
+
+.docLabel {
+  height: 25px;
+  width: 100%;
+  text-align: center;
+}
+
+  .docLabel label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+.docRemove {
+  width: 100%;
+  height: 20px;
+  text-align: right;
+  margin-right: -10px !important;
+}
+
+  .docRemove mat-icon {
+    font-size: 25px !important;
+    cursor: pointer;
+  }
+
+.docDownload {
+  margin: 10px 0px 10px 0px;
+  height: 40px;
+  text-align: center;
+}
+
 .scheduleSection .mat-icon {
   font-size: 30px;
 }

@@ -20,6 +20,9 @@ import { ProposalsComponent } from './proposals/proposals.component';
 import { NewProposalComponent } from './new-proposal/new-proposal.component';
 import { ViewProposalComponent } from './view-proposal/view-proposal.component';
 
+import { HttpService } from './global/http.service';
+import { ProposalService } from './services/proposal.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +47,7 @@ import { ViewProposalComponent } from './view-proposal/view-proposal.component';
     AngularMaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [HttpService, ProposalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

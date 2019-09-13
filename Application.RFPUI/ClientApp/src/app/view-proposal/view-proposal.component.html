@@ -10,14 +10,20 @@
             <mat-panel-description></mat-panel-description>
           </mat-expansion-panel-header>
 
-          <div class="row timeline">
-            <div class="col-lg-2 dotted-row" *ngFor="let journey of RequestJourney">
-              <label>{{journey.Name}}</label><br />
-              <div>
-                <img class="TimeLineCard" src="{{getProcessImage(journey.statusId)}}" alt="Image Here"><br />
+          <div class="journeysection">
+            <div class="timeline">
+              <div class="dottedTimeline" *ngFor="let journey of RequestJourney; let L = last;">
+                <div class="timelineCard">
+                  <p>{{journey.Name}}</p>
+                  <div>
+                    <img class="timeLineImg" src="{{getProcessImage(journey.statusId)}}" alt="Image Here"><br />
+                  </div>
+                  <p>{{journey.status}}</p>
+                  <p>{{journey.dateTime}}</p>
+                </div>
+                <div *ngIf="!L" class="journeyLine"></div>
               </div>
-              <label>{{journey.status}}</label><br />
-              <label>{{journey.dateTime}}</label>
+              
             </div>
           </div>
 
@@ -33,19 +39,9 @@
 
           <div>
             <div class="journeyDiv">
-              <!--<div *ngFor="let journey of journeyData; let i = index;">
-            <div class="circle"> Step</div>
-            <div class="dash"></div>
-          </div>-->
-              <div class="circle"> Step 1</div>
-              <div class="dash"></div>
-              <div class="circle"> Step 2</div>
-              <div class="dash"></div>
-              <div class="circle"> Step 3</div>
-              <div class="dash"></div>
-              <div class="circle"> Step 4</div>
-              <div class="dash"></div>
-              <div class="circle"> Step 5</div>
+              <div class="arrow">
+                <div class="inner-arrow">Completed</div>
+              </div>
             </div>
           </div>
 
@@ -169,7 +165,7 @@
 
       <br />
 
-      <mat-accordion>
+      <!--<mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
             <mat-panel-title>Documents</mat-panel-title>
@@ -211,7 +207,7 @@
         </mat-expansion-panel>
       </mat-accordion>
 
-      <br />
+      <br />-->
 
       <mat-accordion>
         <mat-expansion-panel>
@@ -221,38 +217,37 @@
           </mat-expansion-panel-header>
 
           <div class="documentSection">
-            <!--<div class="row">
-              <div class="col-lg-1 docmentDiv" *ngFor="let doc of existingDocuments">
-                <div class="docment">
-                  <label>{{doc.documentName}}</label>
-                  <img src="{{getDocumentImage(doc.documentExt)}}" alt="Document Here">
-                  <a href="{{doc.documentStream}}" download="{{doc.documentName}}">Download</a>
-                </div>
-              </div>
-            </div>-->
             <div class="row">
-              <div formArrayName="documents" *ngFor="let X of proposalForm.get('documents')['controls']; let i = index;">
-                <div class="col-lg-4" [formGroupName]="i">
-                  <mat-form-field>
-                    <input matInput placeholder="Upload Document" formControlName="documentName" required readonly maxlength="50">
-                  </mat-form-field>
-                  <input type="file" (change)="fileInput($event, i)" id="file+{{i}}" class="hidden" />
+              <!--<div class="col-lg-2 documentDiv" *ngFor="let doc of existingDocuments">
+                <label>{{doc.documentName}}</label>
+                <div class="documentImg">
+                  <img src="{{getDocumentImage(doc.documentExt)}}" alt="Document Here">
                 </div>
-                <div class="col-lg-1">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div>
-                        <label for="file+{{i}}"><mat-icon>attachment</mat-icon></label>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div *ngIf="proposalForm.get('documents').controls.length > 1" class="btn" (click)="removeDocument(i)">
-                        <mat-icon>remove_circle</mat-icon>
-                      </div>
-                    </div>
+                <br />
+                <button class="btn btn-default btn-sm" type="button" (click)="downloadFile(doc)">Download</button>
+              </div>-->
+              <div formArrayName="documents" *ngFor="let X of proposalForm.get('documents')['controls']; let i = index;">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5 documentDiv" [formGroupName]="i">
+                  <div class="docRemove">
+                    <mat-icon (click)="removeDocument(i)">highlight_off</mat-icon>
+                  </div>
+                  <div class="docLabel">
+                    <input matInput placeholder="Upload Document" formControlName="documentName" required readonly maxlength="50" class="hidden">
+                    <label>{{ X.get('documentName').value || 'No file choosen' }}</label>
+                    <input type="file" (change)="fileInput($event, i)" id="file+{{i}}" class="hidden" />
+                  </div>
+                  <div class="documentImg">
+                    <label for="file+{{i}}"><img src="{{getDocumentImage(X.get('documentExt').value || 'new')}}" alt="Document Here"></label>
+                  </div>
+                  <div class="docDownload">
+                    <button *ngIf="X.get('documentId').value > 0" class="btn btn-default btn-sm" type="button" (click)="downloadFile(X.value)">Download</button>
+                    <div *ngIf="X.get('documentId').value <= 0"><p><i>Click on image to upload the document</i></p></div>
                   </div>
                 </div>
+                
               </div>
+            </div>
+            <div class="row">
               <div class="col-lg-1">
                 <div class="btn" (click)="addNewDocument()">
                   <mat-icon>add_circle</mat-icon>
@@ -297,7 +292,7 @@
                     </div>
                     <div>
                       <mat-form-field>
-                        <textarea rows="2" matInput multiline placeholder="Answer" formControlName="answer" required maxlength="300"></textarea>
+                        <textarea rows="1" matInput multiline placeholder="Answer" formControlName="answer" required maxlength="300"></textarea>
                       </mat-form-field>
                     </div>
                   </div>
@@ -327,7 +322,7 @@
 
           <div>
             <mat-form-field>
-              <textarea rows="4" matInput multiline placeholder="Additional Information" formControlName="additionalInformation" required maxlength="300"></textarea>
+              <textarea rows="2" matInput multiline placeholder="Additional Information" formControlName="additionalInformation" required maxlength="300"></textarea>
             </mat-form-field>
           </div>
 
