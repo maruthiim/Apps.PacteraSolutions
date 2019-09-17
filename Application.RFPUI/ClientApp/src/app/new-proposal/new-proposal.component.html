@@ -19,8 +19,9 @@
             <div>
               <div class="row">
                 <div class="col-lg-3">
+                  <mat-label>Request Type <label>*</label></mat-label>
                   <mat-form-field>
-                    <mat-select matinput placeholder="Request Type" formControlName="requestType" required>
+                    <mat-select matinput formControlName="requestType" required>
                       <mat-option value="Request Type 1">Request Type 1</mat-option>
                       <mat-option value="Request Type 2">Request Type 2</mat-option>
                       <mat-option value="Request Type 3">Request Type 3</mat-option>
@@ -29,45 +30,53 @@
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
+                  <mat-label>RFP Code <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput placeholder="RFP Code" formControlName="RFPCode" required maxlength="50">
+                    <input matInput formControlName="RFPCode" required maxlength="50">
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
+                  <mat-label>Status <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput placeholder="Status" formControlName="status" required maxlength="50" readonly>
+                    <input matInput formControlName="status" required maxlength="50" readonly>
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
+                  <mat-label>Requested Date <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput [matDatepicker]="picker1" placeholder="Requested Date" required readonly formControlName="requestedDate">
+                    <input matInput [matDatepicker]="picker1" required readonly formControlName="requestedDate">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>
                 </div>
                 <div class="col-lg-6">
+                  <mat-label>Title <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput placeholder="Title" formControlName="title" required maxlength="50">
+                    <input matInput formControlName="title" required maxlength="50">
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
+                  <mat-label>Customer <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput placeholder="Customer" formControlName="customer" required maxlength="50">
+                    <input matInput formControlName="customer" required maxlength="50">
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
+                  <mat-label>Location <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput placeholder="Location" formControlName="location" required maxlength="50">
+                    <input matInput formControlName="location" required maxlength="50">
                   </mat-form-field>
                 </div>
                 <div class="col-lg-6">
+                  <mat-label>Scope <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput placeholder="Scope" formControlName="scope" required maxlength="250">
+                    <input matInput formControlName="scope" required maxlength="250">
                   </mat-form-field>
                 </div>
                 <div class="col-lg-6">
+                  <mat-label>Description <label>*</label></mat-label>
                   <mat-form-field>
-                    <textarea rows="1" matInput multiline placeholder="Description" formControlName="description" required maxlength="250"></textarea>
+                    <textarea rows="1" matInput multiline formControlName="description" required maxlength="250"></textarea>
                   </mat-form-field>
                 </div>
               </div>
@@ -86,9 +95,59 @@
             </mat-expansion-panel-header>
 
             <div class="scheduleSection">
-              <div class="row" formArrayName="schedule" *ngFor="let X of newProposalForm.get('schedule')['controls']; let i = index;">
-                <div [formGroupName]="i">
-                  <div class="col-lg-4">
+              <!--<div class="row" formArrayName="schedule" *ngFor="let X of newProposalForm.get('schedule')['controls']; let i = index;">
+                <div [formGroupName]="i">-->
+
+                  <div>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Milestone</th>
+                          <th>Start Date</th>
+                          <th>End Date</th>
+                          <th>Remarks</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="schedule" *ngFor="let X of newProposalForm.get('schedule')['controls']; let i = index;">
+                        <tr [formGroupName]="i">
+                          <td>
+                            <mat-form-field>
+                              <input matInput formControlName="milestone" required maxlength="100">
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field>
+                              <input matInput [matDatepicker]="picker2" required formControlName="scheduleStartDate" readonly>
+                              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                              <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field>
+                              <input matInput [matDatepicker]="picker3" required formControlName="scheduleEndDate" readonly>
+                              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                              <mat-datepicker #picker3></mat-datepicker>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field>
+                              <input matInput formControlName="remarks" name="txtRemarks" required maxlength="100">
+                            </mat-form-field>
+                          </td>
+                          <td *ngIf="newProposalForm.get('schedule').controls.length > 1" >
+                            <mat-icon class="matIconButton" (click)="removeSchedule(i)">remove_circle</mat-icon>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+
+
+
+
+                  <!--<div class="col-lg-4">
                     <mat-form-field>
                       <input matInput placeholder="Milestone" formControlName="milestone" required maxlength="100">
                     </mat-form-field>
@@ -118,7 +177,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>-->
               <div class="col-lg-1">
                 <div class="btn" (click)="addNewSchedule()">
                   <mat-icon>add_circle</mat-icon>
@@ -141,7 +200,7 @@
             <div class="documentSection">
               <div class="row">
               <div formArrayName="documents" *ngFor="let X of newProposalForm.get('documents')['controls']; let i = index;">
-                  <div class="col-lg-1 col-md-3 col-sm-4 col-xs-5 documentDiv" [formGroupName]="i">
+                  <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5 documentDiv" [formGroupName]="i">
                     <div class="docRemove">
                       <mat-icon (click)="removeDocument(i)">highlight_off</mat-icon>
                     </div>
@@ -233,8 +292,9 @@
                   </div>
                   <br />
                   <div>
+                    <mat-label>Area <label>*</label></mat-label>
                     <mat-form-field>
-                      <input matInput placeholder="Area" formControlName="questionnaireArea" required maxlength="50">
+                      <input matInput formControlName="questionnaireArea" required maxlength="50">
                     </mat-form-field>
                   </div>
                   <div formArrayName="questions" *ngFor="let Y of X.get('questions')['controls']; let j = index;">
@@ -244,13 +304,15 @@
                       </div>
                       <br />
                       <div>
+                        <mat-label>Question <label>*</label></mat-label>
                         <mat-form-field>
-                          <textarea rows="1" matInput multiline placeholder="Question" formControlName="question" required maxlength="150"></textarea>
+                          <textarea rows="1" matInput multiline formControlName="question" required maxlength="150"></textarea>
                         </mat-form-field>
                       </div>
                       <div>
+                        <mat-label>Answer <label>*</label></mat-label>
                         <mat-form-field>
-                          <textarea rows="1" matInput multiline placeholder="Answer" formControlName="answer" required maxlength="300"></textarea>
+                          <textarea rows="1" matInput multiline formControlName="answer" required maxlength="300"></textarea>
                         </mat-form-field>
                       </div>
                     </div>
@@ -279,8 +341,9 @@
             </mat-expansion-panel-header>
 
             <div>
+              <mat-label>Answer <label>*</label></mat-label>
               <mat-form-field>
-                <textarea rows="2" matInput multiline placeholder="Additional Information" formControlName="additionalInformation" required maxlength="300"></textarea>
+                <textarea rows="2" matInput multiline formControlName="additionalInformation" required maxlength="300"></textarea>
               </mat-form-field>
             </div>
 

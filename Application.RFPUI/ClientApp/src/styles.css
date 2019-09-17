@@ -63,3 +63,17 @@ mat-form-field {
   width: 50%;
 }
 
+/*Mat Form Field */
+
+mat-label {
+  font-weight: 700;
+  color: rgb(0, 66, 128);
+}
+
+mat-label label {
+  color: red;
+}
+
+.mat-form-field-infix {
+  border-top: none !important;
+}

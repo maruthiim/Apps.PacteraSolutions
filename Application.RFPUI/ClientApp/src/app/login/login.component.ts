@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Form, FormGroup, FormControl } from '@angular/forms';
+import { Form, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,14 @@ export class LoginComponent implements OnInit {
   public time: number;
   public period: string;
   public loginForm: FormGroup;
+  public isValidCredentials = true;
 
-  constructor(private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router,
+              private loginService: LoginService) { }
 
   ngOnInit() {
-    this.getStatus();
     this.loginForm = this.createLoginForm();
+    this.getStatus();
   }
 
   public getStatus() {
@@ -33,14 +36,34 @@ export class LoginComponent implements OnInit {
   }
 
   public createLoginForm() {
-    return new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
-    })
+    return this.formBuilder.group({
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    });
   }
 
   onSubmit() {
-    this.router.navigate(['']);
+    this.isValidCredentials = true;
+    const username = this.loginForm.get('username').value;
+    const password = this.loginForm.get('password').value;
+
+    // Temporary process
+    if (username === 'admin' && password === 'password') {
+      this.router.navigate(['']);
+    } else {
+      this.isValidCredentials = false;
+    }
+
+    // Main Login Process
+
+    const loginData = new FormData();
+    loginData.append('username', username);
+    loginData.append('password', password);
+
+    // this.loginService.login(loginData).subscribe((response: any) => {
+    //  alert('Login Success !!!!');
+    // });
+
   }
 
 }

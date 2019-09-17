@@ -20,8 +20,8 @@
 }
 
 .documentImg img {
-  height: 60px;
-  width: 60px;
+  height: 100px;
+  width: 100px;
   cursor: pointer;
 }
 
@@ -53,6 +53,10 @@
   margin: 10px 0px 10px 0px;
   height: 40px;
   text-align: center;
+}
+
+.scheduleSection {
+  overflow-x: auto;
 }
 
 .scheduleSection .mat-icon {
@@ -102,3 +106,67 @@ mat-panel-title {
   border-radius: 5px;
   padding: 0px 20px 20px;
 }
+
+th {
+  height: 40px;
+  color: white;
+  background-color: #00163b;
+}
+
+th, td {
+  border: 1px solid black;
+}
+
+th:nth-child(5) {
+  border: none;
+  background-color: transparent;
+}
+
+td:nth-child(5) {
+  border: none;
+}
+
+th {
+  text-align: center;
+}
+
+table mat-form-field {
+  padding: 5px;
+}
+
+td {
+  height: 40px;
+  padding: 0px 10px;
+}
+
+th:nth-child(1) {
+  width: 350px;
+}
+
+td:nth-child(1) {
+  width: 350px;
+}
+
+th:nth-child(4) {
+  width: 350px;
+}
+
+td:nth-child(4) {
+  width: 350px;
+}
+
+.scheduleSection
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.scheduleSection
+::ng-deep .mat-form-field-wrapper {
+  padding: 0px;
+}
+
+.matIconButton {
+  cursor: pointer;
+}
+
+

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from './core/AngularMaterialModule';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,9 +19,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProposalsComponent } from './proposals/proposals.component';
 import { NewProposalComponent } from './new-proposal/new-proposal.component';
 import { ViewProposalComponent } from './view-proposal/view-proposal.component';
+import { LoaderComponent } from './loader/loader.component';
 
 import { HttpService } from './global/http.service';
 import { ProposalService } from './services/proposal.service';
+import { LoginService } from './services/login.service';
+import { LoaderService } from './loader/loader.service';
+import { LoaderInterceptor } from './loader/loaderIntercepter';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import { ProposalService } from './services/proposal.service';
     ProposalsComponent,
     NewProposalComponent,
     ViewProposalComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,7 +52,13 @@ import { ProposalService } from './services/proposal.service';
     AngularMaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [HttpService, ProposalService],
+  providers: [HttpService, ProposalService, LoginService, LoaderService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
