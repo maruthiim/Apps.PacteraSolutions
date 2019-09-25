@@ -1,25 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//import { LoginComponent } from '../login/login.component';
-//import { AppLayoutComponent } from '../app-layout/app-layout.component';
-//import { DashboardComponent } from '../dashboard/dashboard.component';
 import { routes } from '../routes/routes';
+import { RouteGuardService } from '../services/route-guard.service';
 
-//const routes: Routes = [
 
-//  {
-//    path: 'login',
-//    component: LoginComponent,
-//  },
-//  {
-//    path: '',
-//    component: AppLayoutComponent,
-//    children: [
-//      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-//      { path: 'dashboard', component: DashboardComponent}
-//    ]
-//  }
-//];
 
 @NgModule({
   declarations: [],
@@ -28,7 +12,8 @@ import { routes } from '../routes/routes';
   ],
   exports: [
     RouterModule
-  ]
+  ],
+  providers: [RouteGuardService]
 })
 
 export class AppRoutingModule { }

@@ -329,7 +329,7 @@ export class ProposalsComponent implements OnInit {
   }
 
   newProposal() {
-    this.router.navigate(['/Home/NewProposal']);
+    this.router.navigate(['/home/newProposal']);
   }
 
 }

@@ -25,8 +25,8 @@
         </div>
         <div class="loginFormDiv">
           <form class="form-group loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div *ngIf="isValidCredentials" class="validCredentials">Please enter credentials to login.</div>
-            <div *ngIf="!isValidCredentials" class="invalidCredentials">Please enter valid credentials !!</div>
+            <div *ngIf="isValidCredentials" class="validCredentials"><i>Please enter credentials to login.</i></div>
+            <div *ngIf="!isValidCredentials" class="invalidCredentials"><i>Please enter valid credentials !!</i></div>
             <div class="input-container">
               <div class="icon">
                 <i class="glyphicon glyphicon-user"></i>

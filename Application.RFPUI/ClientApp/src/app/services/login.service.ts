@@ -11,4 +11,25 @@ export class LoginService {
   public login(data: FormData): Observable<any> {
     return this.httpService.makePostRequestforFormData('api/........');
   }
+
+  public logout() {
+    sessionStorage.clear();
+  }
+
+  public setSessionStorage(name: string, value: string) {
+    sessionStorage.setItem(name, value);
+  }
+
+  public getSessionStorage(name: string) {
+    return sessionStorage.getItem(name);
+  }
+
+  public isUserLoggedIn() {
+    let token = this.getSessionStorage('token');
+    if (token && token !== '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Form, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
+import { UserData } from '../global/constants';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   public period: string;
   public loginForm: FormGroup;
   public isValidCredentials = true;
+  public userData: any; //Comment: User Model
 
   constructor(private formBuilder: FormBuilder, private router: Router,
               private loginService: LoginService) { }
@@ -64,6 +66,9 @@ export class LoginComponent implements OnInit {
     //  alert('Login Success !!!!');
     // });
 
+
+    this.userData = UserData;
+    this.loginService.setSessionStorage('token', UserData.token);
   }
 
 }

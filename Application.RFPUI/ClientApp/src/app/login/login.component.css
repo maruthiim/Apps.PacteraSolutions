@@ -162,9 +162,9 @@
 .validCredentials {
   margin-top: 5px;
   width: 100%;
-  height: 25px;
-  background-color: lightblue;
-  border: 1px solid darkblue;
+  height: 20px;
+  background-color: white;
+  border: 1px solid gray;
   border-radius: 3px;
-  color: darkblue;
+  color: gray;
 }

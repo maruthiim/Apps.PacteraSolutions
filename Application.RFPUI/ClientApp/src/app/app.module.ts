@@ -17,14 +17,15 @@ import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { MasterComponent } from './master/master.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProposalsComponent } from './proposals/proposals.component';
-import { NewProposalComponent } from './new-proposal/new-proposal.component';
-import { ViewProposalComponent } from './view-proposal/view-proposal.component';
+import { NewProposalComponent } from './proposals/new-proposal/new-proposal.component';
+import { ViewProposalComponent } from './proposals/view-proposal/view-proposal.component';
 import { LoaderComponent } from './loader/loader.component';
 
 import { HttpService } from './global/http.service';
 import { ProposalService } from './services/proposal.service';
 import { LoginService } from './services/login.service';
 import { LoaderService } from './loader/loader.service';
+
 import { LoaderInterceptor } from './loader/loaderIntercepter';
 
 @NgModule({

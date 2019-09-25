@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { NavbarMenu } from '../global/constants';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-master',
@@ -13,7 +14,7 @@ export class MasterComponent implements OnInit {
   public appRoutes: Routes = [];
   public MenuList: any = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService) { }
 
 
   ngOnInit() {
@@ -25,7 +26,8 @@ export class MasterComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/Login']);
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

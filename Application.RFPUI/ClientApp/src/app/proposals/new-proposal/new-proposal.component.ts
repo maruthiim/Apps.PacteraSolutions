@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
-import { ProposalService } from '../services/proposal.service';
+import { ProposalService } from '../../services/proposal.service';
 
 @Component({
   selector: 'app-new-proposal',

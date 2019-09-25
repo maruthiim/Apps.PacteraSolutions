@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
-import { ProposalData } from '../global/data-json';
+import { ProposalData } from '../../global/data-json';
 import * as FileSaver from 'file-saver';
-import { ProposalService } from '../services/proposal.service';
+import { ProposalService } from '../../services/proposal.service';
 
 @Component({
   selector: 'app-view-proposal',

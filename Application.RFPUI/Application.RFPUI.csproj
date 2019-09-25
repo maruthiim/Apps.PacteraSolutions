@@ -19,8 +19,15 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\proposals\view-models\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\proposals\view-models\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\app\proposals\view-models\**" />
+    <None Remove="ClientApp\src\app\proposals\view-models\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +35,7 @@
     <None Remove="ClientApp\src\app\global\constants.ts" />
     <None Remove="ClientApp\src\app\global\data-json.ts" />
     <None Remove="ClientApp\src\app\routes\routes.ts" />
-    <None Remove="ClientApp\src\app\view-models\proposal-request-view-model.ts" />
+    <None Remove="ClientApp\src\app\services\route-guard.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,11 +43,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\global\constants.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\global\data-json.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\routes\routes.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\view-models\proposal-request-view-model.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\services\" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\route-guard.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
