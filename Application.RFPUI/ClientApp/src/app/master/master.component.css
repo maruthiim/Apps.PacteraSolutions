@@ -2,6 +2,25 @@
   padding-right: 0px !important;
 }
 
+.navbar {
+  background-color: #00163b;
+  overflow: hidden;
+  margin-bottom: 0px !important;
+  border: none !important;
+  height: 60px !important;
+  border-radius: 0px !important;
+}
+
+.navbar .navbar-default {
+  border-color: none !important;
+}
+
+/* Top Content */
+
+.imgContent {
+  padding: 1px !important;
+}
+
 .imagePactera {
   float: left;
   height: 40px;
@@ -9,15 +28,6 @@
   padding-top: 12px;
   font-size: 18px;
   line-height: 20px;
-}
-
-.imgContent {
-  padding: 1px !important;
-}
-
-.imgRFP {
-  height: 45px;
-  padding:6px;
 }
 
 .devider {
@@ -36,26 +46,6 @@
   color:white;
 }
 
-.RFPLabel {
-  color: white;
-  font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
-  /*margin-top: 25px;*/
-}
-
-.navbar {
-  background-color: #00163b;
-  overflow: hidden;
-  margin-bottom: 0px !important;
-  border: none !important;
-  height: 60px !important;
-  border-radius: 0px !important;
-}
-
-.navbar .navbar-default {
-  border-color: none !important;
-}
-
 .profileUser a {
   color: white;
   padding: 14px 16px;
@@ -65,9 +55,9 @@
   cursor: pointer;
 }
 
-  .profileUser a:hover{
-    color: red;
-  }
+.profileUser a:hover{
+  color: red;
+}
 
 .profileUser .glyphicon-log-out:before {
   color: red;
@@ -81,21 +71,15 @@
   font-family: Courier New, Courier, monospace;
 }
 
+/* Top Content */
 
-/*Side Bar*/
-
-@media (min-width:320px) and (max-width:727px) {
-  /*.sidebar {
-    display: none;
-  }*/
-}
+/* Side Navigation*/
 
 .padding-top-45 {
   padding-top: 45px !important;
 }
 
-
-.sidebar {
+.sideNav {
   position: fixed;
   top: 60px;
   width: 200px;
@@ -107,100 +91,61 @@
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   border-right: 0px solid #eee;
   background: #00163b;
-  /* margin-top:10px; */
 }
 
-/*.glyphicon .glyphicon-th-large {
-  height: 80px;
-  width: 80px
-}*/
-
-  .sidebar.sclose {
-    width: 60px;
-  }
-
-    .sidebar.sclose .list-group-item a span {
-      display: none;
-    }
-
-    /*.sidebar.sclose .list-group-item {
-      padding: 15px !important;
-    }*/
-
-  .sidebar .btn-toggle {
-    border-radius: 0px;
-    text-align: right;
-  }
-
-   
-  .sidebar .list-group-item {
-    background-color: transparent;
-    border-radius: 0px !important;
-    padding: 15px;
-    border: 0px;
-    border-left: 4px solid transparent;
-    /* border-bottom: 1px solid #E4E7ED !important; */
-  }
-
-  .sidebar .list-group-item {
-    color: white;
-    font-size: 16px;
-    width: 100%;
-    text-decoration: none;
-    cursor: pointer;
-    outline:none;
-  }
-
-
-  .sidebar .list-group-item {
-    text-decoration: none;
-  }
-
-  .sidebar .list-group-item {
-    text-decoration: none !important;
-  }
-
-    .sidebar .list-group-item .glyphicon {
-      width: 50px;
-      font-size: 25px;
-      color: white;
-      text-align: left;
-    }
-
-    .sidebar .list-group-item.active:hover {
-      color: #000000;
-    }
-
-    .sidebar .list-group-item.active {
-      background-color: goldenrod;
-      /*border-left: 5px solid #00163b;*/
-      font-weight: 700;
-      color: white;
-      outline: none;
-    }
-
-      .sidebar .list-group-item.active i, span {
-        color: white !important;
-      }
-
-  .sidebar .nav {
-    margin-bottom: 20px;
-  }
-
-.main {
-  margin-top: 0px;
-  margin-left: 185px;
-  padding: 0px;
-  transition: all 0.3s;
+.sideNav.sideNavClose {
+  width: 60px;
 }
 
-  .main.sopen {
-    margin-left: 45px;
-  }
+.sideNav.sideNavClose .list-group-item a span {
+  display: none;
+}
 
-  .main .main-panel {
-    padding-left: 0px;
-  }
+.sideNav .btn-toggle {
+  border-radius: 0px;
+  text-align: right;
+}
+
+.sideNav .list-group-item {
+  background-color: transparent;
+  border-radius: 0px !important;
+  padding: 15px;
+  border: 0px;
+  border-left: 4px solid transparent;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none !important;
+}
+
+.sideNav .list-group-item .glyphicon {
+  width: 40px;
+  font-size: 25px;
+  color: white;
+  text-align: left;
+}
+
+.sideNav .list-group-item a:hover {
+  text-decoration: none;
+}
+
+.sideNav .list-group-item.active {
+  background-color: goldenrod;
+  font-weight: 700;
+  color: white;
+  outline: none;
+}
+
+.sideNav .list-group-item.active i, span {
+  color: white !important;
+}
+
+.sideNav .nav {
+  margin-bottom: 20px;
+}
 
 nav button.btn-toggle i {
   font-size: 1.2em;
@@ -209,12 +154,33 @@ nav button.btn-toggle i {
 nav button.btn-toggle {
   background: #00163b !important;
   color: white !important;
-  display:inline-block;
-  outline:none;
+  display: inline-block;
+  outline: none;
 }
 
-nav button  {
+nav button {
   display: inline-block;
-  position:absolute;
-  bottom:0;
+  position: absolute;
+  bottom: 0;
 }
+
+/* Side Navigation*/
+
+/* Main Body*/
+
+.main {
+  margin-top: 0px;
+  margin-left: 185px;
+  padding: 0px;
+  transition: all 0.3s;
+}
+
+.main.sideNavOpen {
+  margin-left: 45px;
+}
+
+.main .main-panel {
+  padding-left: 0px;
+}
+
+/* Main Body*/

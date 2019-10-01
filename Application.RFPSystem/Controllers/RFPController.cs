@@ -9,6 +9,8 @@ using Applications.Operations;
 using Common.DataObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using Newtonsoft.Json;
 //using System.Web.Mvc;
 
@@ -34,41 +36,67 @@ namespace Application.RFPSystem.Controllers
 
         [Route("CreateProposal")]
         [HttpPost]
-        public async Task<IActionResult> CreateRequestM([FromForm]ProposalDataModel proposalDataModel)
+        public async Task<IActionResult> CreateRequestM([FromForm]RFPRequestDataModel proposalDataModel)
         {
             try
             {
-                var obje = Request.Form.Files;
 
-                
+                RFPRequestDataModel rFPRequestDataModel =
+                    JsonConvert.DeserializeObject<RFPRequestDataModel>(Request.Form["proposalData"]);
 
-                var objKeys = Request.Form.Keys.ToList();
 
-                Dictionary<string, object> dict = new Dictionary<string, object>();
+                var ConnectionString = "mongodb://10.130.4.144:27017";
 
-                
+                var client = new MongoClient(ConnectionString);
+                var db = client.GetDatabase("local");
 
-                var json = JsonConvert.SerializeObject(objKeys);
+               // db.CreateCollection("RFPRequestCollection");
 
-                using (IAsyncValidations asyncValidations = new ValdiateRules())
-                {
-                    using (Task<ValidateResponse> validateResponse = asyncValidations.ValidateProposalUser(proposalDataModel.proposalUsers))
-                    {
-                        if (validateResponse.Result.NoErrors)
-                        {
-                            return validateResponse.Result.controllerBase.Result;
-                        }
-                        else
-                        {
-                            return Ok("Proposal Request Submitted");
-                        }
-                    }
-                }
+                var col = db.GetCollection<BsonDocument>("RFPRequestCollection");
+
+                var doc = BsonDocument.Create(rFPRequestDataModel).ToBsonDocument();
+
+
+                await col.InsertOneAsync(doc);
+
+                return Ok("Document Inserted");
             }
             catch(Exception ex)
             {
                 return Ok(ex);
             }
+
+            //    var obje = Request.Form.Files;
+
+                
+
+            //    var objKeys = Request.Form.Keys.ToList();
+
+            //    Dictionary<string, object> dict = new Dictionary<string, object>();
+
+                
+
+            //    var json = JsonConvert.SerializeObject(objKeys);
+
+            //    using (IAsyncValidations asyncValidations = new ValdiateRules())
+            //    {
+            //        using (Task<ValidateResponse> validateResponse = asyncValidations.ValidateProposalUser(proposalDataModel.proposalUsers))
+            //        {
+            //            if (validateResponse.Result.NoErrors)
+            //            {
+            //                return validateResponse.Result.controllerBase.Result;
+            //            }
+            //            else
+            //            {
+            //                return Ok("Proposal Request Submitted");
+            //            }
+            //        }
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    return Ok(ex);
+            //}
         }
 
     }

@@ -50,11 +50,15 @@
   opacity: .5;
 }
 
-.imageContent {
+.image {
   height: 300px;
   mask: url('../../assets/images/Project_Proposal.png') center/200px 200px no-repeat;
   background-color: white;
+}
+
+.imageContent {
   bottom: 0;
+  /*position: absolute;*/
 }
 
 .loginPage {
@@ -168,3 +172,14 @@
   border-radius: 3px;
   color: gray;
 }
+
+
+/*New Style of Login*/
+
+.mainHeader {
+
+}
+
+/*New Style of Login*/
+
+

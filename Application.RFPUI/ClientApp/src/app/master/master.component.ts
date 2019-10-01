@@ -10,7 +10,7 @@ import { LoginService } from '../services/login.service';
 })
 export class MasterComponent implements OnInit {
 
-  public sideBarFlag = true;
+  public sideMenu = true;
   public appRoutes: Routes = [];
   public MenuList: any = [];
 
@@ -22,7 +22,7 @@ export class MasterComponent implements OnInit {
   }
 
   toggleFunction() {
-    this.sideBarFlag = !this.sideBarFlag;
+    this.sideMenu = !this.sideMenu;
   }
 
   logout() {
