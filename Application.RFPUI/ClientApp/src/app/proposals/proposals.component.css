@@ -123,5 +123,8 @@ mat-header-cell:nth-child(2) {
   width: 240px;
 }
 
+::ng-deep .mat-sort-header-arrow {
+  color: white !important;
+}
 
 

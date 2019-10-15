@@ -27,6 +27,7 @@ import { LoginService } from './services/login.service';
 import { LoaderService } from './loader/loader.service';
 
 import { LoaderInterceptor } from './loader/loaderIntercepter';
+import { AdministrationComponent } from './administration/administration.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LoaderInterceptor } from './loader/loaderIntercepter';
     ProposalsComponent,
     NewProposalComponent,
     ViewProposalComponent,
-    LoaderComponent
+    LoaderComponent,
+    AdministrationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

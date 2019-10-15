@@ -1,10 +1,10 @@
 .Page {
   display: table;
   width: 100%;
+  overflow: hidden;
 }
 
-.sideContent {
-  /*background-color: #007bff;*/ /*lightseagreen*/
+/*.sideContent {
   height: 100vh;
   width: 350px;
   color: white;
@@ -13,8 +13,6 @@
   padding: 0px 30px;
   background-image: linear-gradient(to bottom right, red 0%, rgb(6, 48, 90) 30%, rgb(6, 48, 90) 70%, red 100%);
   overflow-y: auto;
-  /*background: url('../../assets/images/Back_3.png') no-repeat;*/
-  /*position: fixed;*/
   display: table-cell;
   bottom: 0 !important;
 }
@@ -58,7 +56,6 @@
 
 .imageContent {
   bottom: 0;
-  /*position: absolute;*/
 }
 
 .loginPage {
@@ -66,18 +63,12 @@
 }
 
 .loginContent {
-  /* text-align: center; */
-  /*margin-top: 100px;
-  margin-left: 500px;*/
-  /*height: 500px;*/
-  /*width: 500px;*/
   text-align: center;
   width: 350px;
   margin: auto;
 }
 
 .loginFormContent {
-  /* background-image: url('../../assets/images/login_wallpaper1.jpg'); */
   height: 350px;
   border: 1px solid gray;
   border-radius: 25px;
@@ -93,9 +84,6 @@
   color: gray;
 }
 
-.loginFormDiv {
-  /*margin-top: 10px;*/
-}
 
 * {
   box-sizing: border-box;
@@ -105,12 +93,10 @@
   margin: 10px 20px;
 }
 
-.basicMargin {
-  /*margin: 50px 0px 0px 0px;*/
-}
+
 
 .input-container {
-  display: -ms-flexbox; /* IE10 */
+  display: -ms-flexbox; 
   display: flex;
   width: 100%;
   margin-bottom: 3px;
@@ -171,15 +157,197 @@
   border: 1px solid gray;
   border-radius: 3px;
   color: gray;
-}
+}*/
 
 
-/*New Style of Login*/
+
+/*New Login Screen*/
+
 
 .mainHeader {
-
+  position: fixed;
+  display:inline;
+  overflow: auto;
 }
 
-/*New Style of Login*/
+.mainHeader .header-strip {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  background: rgba(255,255,255,0.2);
+  height: 55px;
+  width: 100%;
+}
+
+.mainHeader .header-strip img {
+  position: absolute;
+  top: 10px;
+  left: 25px;
+  width: 125px;
+  height: 35px;
+}
+
+.devider {
+  position: absolute;
+  font-size: 30px;
+  left: 160px;
+  top: 5px;
+  color: white;
+}
+
+.RFP {
+  position: absolute;
+  font-size: 30px;
+  left: 180px;
+  top:5px;
+  font-family: 'Bodoni MT';
+  font-style: italic;
+  color: white;
+}
+
+.hiddenFlow {
+  overflow-y: hidden;
+}
+
+.imgBackground {
+  width: 100%;
+  /*margin: auto;*/
+}
+
+.empLogin {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  padding: 25px;
+  width: 400px;
+  background: rgba(255,255,255,0.12);
+  text-align: center;
+}
+
+.wish {
+  color: white;
+}
+
+.gt-morning {
+  height: 50px;
+  mask: url('../../assets/images/morning.svg') center/50px 50px no-repeat;
+  background-color: white;
+}
+
+.gt-afternoon {
+  height: 50px;
+  mask: url('../../assets/images/afternoon.svg') center/50px 50px no-repeat;
+  background-color: white;
+}
+
+.gt-evening {
+  height: 50px;
+  mask: url('../../assets/images/evening.svg') center/50px 50px no-repeat;
+  background-color: white;
+}
+
+.input-container {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top: 20px;
+  height: 40px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input-field:focus {
+  border: 3px solid darkgray;
+}
+
+.btn {
+  background-color: darkgoldenrod;
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.btn:focus {
+  outline-color: white;
+}
+
+.vailation-alert {
+  font-size: 10px;
+  font-family: helvetica;
+  font-weight: 700;
+  color: lightcoral;
+  float: left;
+}
+
+.invalidCredentials {
+  width: 100%;
+  height: 25px;
+  border-radius: 3px;
+  color: lightcoral;
+  font-weight: bold;
+}
+
+/*New Login Screen*/
 
 
+/* Responsive */
+
+
+
+@media screen and (max-width:700px) {
+  /* For mobile phones: */
+
+  .mainHeader {
+    position: relative;
+    overflow: auto;
+  }
+
+  .mainHeader .header-strip {
+    position: absolute;
+  }
+
+  .empLogin {
+    position: static;
+    width: 90%;
+    border: 1px solid darkgray;
+    border-radius: 25px;
+    margin: 20px auto;
+  }
+
+  .wish {
+    color: black;
+  }
+
+  .wish h4 {
+    font-weight: bold;
+  }
+
+  .gt-morning {
+    background-color: black;
+  }
+
+  .gt-afternoon {
+    background-color: black;
+  }
+
+  .gt-evening {
+    background-color: black;
+  }
+
+  .input-field {
+    outline: none;
+    border: 1px solid gray;
+  }
+}
+
+/* Responsive */

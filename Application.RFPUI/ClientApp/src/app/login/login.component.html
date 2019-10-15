@@ -1,5 +1,5 @@
 <div class="Page">
-  <div class="sideContent">
+  <!--<div class="sideContent">
     <div class="welcomeContent">
       <h1>Welcome to <i>RFP</i></h1>
     </div>
@@ -54,14 +54,49 @@
         </div>
       </div>
     </div>
-  </div>
-  <!--New Style of Login-->
-  <!--<div class="mainHeader">
-
   </div>-->
-  <!--<img src="../../assets/images/1.jfif" />-->
   <!--New Style of Login-->
+  <div class="mainHeader">
+    <div class="hiddenFlow">
+      <img class="imgBackground" src="../../assets/images/Background.jpg" />
+    </div>
+
+    <div class="header-strip">
+      <div>
+        <img alt="Pactera" class="imagePactera" src="assets/images/TopNavLogo.png">
+      </div>
+      <label class="devider"> | </label>
+      <label class="RFP"> RFP </label>
+    </div>
+
+    <div class="empLogin">
+      <!--<img src="../../assets/images/user.png" alt="Smiley face" height="60" width="60">-->
+      <div class="wish">
+        <div [ngClass]="{'gt-morning': period === 'MORNING', 'gt-afternoon': period === 'AFTERNOON', 'gt-evening': period === 'EVENING' }"></div>
+        <h4>GOOD {{period}}</h4>
+        <br />
+      </div>
+      <div *ngIf="!isValidCredentials" class="invalidCredentials"><i>Please enter valid credentials !!</i></div>
+      <form class="form-group loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <input required formControlName="username" type="text" id="formUserID" class="input-field" placeholder="USER ID">
+        </div>
+        <div class="vailation-alert" *ngIf="(loginForm.controls['username'].touched || loginForm.controls['username'].dirty)">
+          <div *ngIf="loginForm.controls['username']?.errors?.required">User ID is required.</div>
+        </div>
+        <div class="input-container">
+          <input required formControlName="password" type="password" id="formPassword" class="input-field" placeholder="PASSWORD">
+        </div>
+        <div class="vailation-alert" *ngIf="(loginForm.controls['password'].touched || loginForm.controls['password'].dirty)">
+          <div *ngIf="loginForm.controls['password']?.errors?.required">Password is required.</div>
+        </div>
+        <br />
+        <button class="btn" color="info" block="true" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+      </form>
+    </div>
+  </div>
+    <!--New Style of Login-->
 
 
 
-</div>
+  </div>

@@ -2,7 +2,7 @@ export const NavbarMenu = [
   {
     path: 'dashboard',
     title: 'Dashboard',
-    class: 'glyphicon-th-large'
+    class: 'glyphicon-stats'
   },
   {
     path: 'newProposal',
@@ -13,6 +13,11 @@ export const NavbarMenu = [
     path: 'proposals',
     title: 'Proposals',
     class: 'glyphicon-list-alt'
+  },
+  {
+    path: 'administration',
+    title: 'Administration',
+    class: 'glyphicon-wrench'
   }
 ];
 

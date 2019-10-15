@@ -75,9 +75,6 @@
 
 /* Side Navigation*/
 
-.padding-top-45 {
-  padding-top: 45px !important;
-}
 
 .sideNav {
   position: fixed;
@@ -94,7 +91,7 @@
 }
 
 .sideNav.sideNavClose {
-  width: 60px;
+  width: 45px;
 }
 
 .sideNav.sideNavClose .list-group-item a span {
@@ -109,13 +106,11 @@
 .sideNav .list-group-item {
   background-color: transparent;
   border-radius: 0px !important;
-  padding: 15px;
+  padding: 10px;
   border: 0px;
-  border-left: 4px solid transparent;
   color: white;
   font-size: 16px;
   width: 100%;
-  text-decoration: none;
   cursor: pointer;
   outline: none;
   text-decoration: none !important;
@@ -123,13 +118,18 @@
 
 .sideNav .list-group-item .glyphicon {
   width: 40px;
-  font-size: 25px;
+  font-size: 20px;
   color: white;
   text-align: left;
 }
 
 .sideNav .list-group-item a:hover {
   text-decoration: none;
+}
+
+.sideNav .list-group-item:hover {
+  text-decoration: none;
+  background: rgba(255,255,255,0.1);
 }
 
 .sideNav .list-group-item.active {
@@ -149,6 +149,7 @@
 
 nav button.btn-toggle i {
   font-size: 1.2em;
+  cursor: pointer;
 }
 
 nav button.btn-toggle {
@@ -156,6 +157,7 @@ nav button.btn-toggle {
   color: white !important;
   display: inline-block;
   outline: none;
+  cursor: default;
 }
 
 nav button {
@@ -176,7 +178,7 @@ nav button {
 }
 
 .main.sideNavOpen {
-  margin-left: 45px;
+  margin-left: 30px;
 }
 
 .main .main-panel {
