@@ -9,11 +9,11 @@ export class ProposalService {
   constructor(private httpService: HttpService) { }
 
   public getProposals(): Observable<any> {
-    return this.httpService.makeGetRequest('api/........');
+    return this.httpService.makeGetRequest('GetProposals');
   }
 
   public getProposalDetails(proposalID: any): Observable<any> {
-    return this.httpService.makeGetRequest('api/........');
+    return this.httpService.makeGetRequest('GetProposals');
   }
 
   public addProposal(proposalData: any): Observable<any> {

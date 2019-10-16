@@ -27,6 +27,7 @@ namespace Common.DataObjects
 
     public class RFPRequestDataModel
     {
+        public int Id { get; set; }
         public object RFPUser { get; set; }
         public string RFPCode { get; set; }
         public string status { get; set; }

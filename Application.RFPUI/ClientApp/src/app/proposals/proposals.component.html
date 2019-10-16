@@ -50,9 +50,9 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="requestCode" class="container">
-          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Request Code </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> RFP Code </mat-header-cell>
           <mat-cell *matCellDef="let element" class="cell">
-            <span class="sort-header">{{element.requestCode}}</span>
+            <span class="sort-header">{{element.rfpCode}}</span>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="title" class="container">
@@ -79,7 +79,7 @@
             <span class="sort-header">{{element.createdBy}}</span>
           </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="createDate" class="container">
+        <!--<ng-container matColumnDef="createDate" class="container">
           <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> Create Date </mat-header-cell>
           <mat-cell *matCellDef="let element" class="cell">
             <span class="sort-header">{{element.createDate | date: 'MMMM dd, yyyy hh:mm a'}}</span>
@@ -96,7 +96,7 @@
           <mat-cell *matCellDef="let element" class="cell">
             <span class="sort-header">{{element.mofdifiedDate | date: 'MMMM dd, yyyy hh:mm a'}}</span>
           </mat-cell>
-        </ng-container>
+        </ng-container>-->
         <mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></mat-row>
       </mat-table>

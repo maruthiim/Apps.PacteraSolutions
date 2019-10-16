@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { ProposalService } from '../../services/proposal.service';
+import { NotificationService } from '../../services/notification.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-new-proposal',
@@ -17,7 +20,9 @@ export class NewProposalComponent implements OnInit {
   fileStream: any;
 
   constructor(private formBuilder: FormBuilder,
-              private proposalService: ProposalService) { }
+    private proposalService: ProposalService,
+    private notificationService: NotificationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.createForm();
@@ -165,11 +170,23 @@ export class NewProposalComponent implements OnInit {
       }
 
       this.proposalService.addProposal(newProposalFormData).subscribe((response: any) => {
-        alert(response);
-      }, error => (alert(error)));
+        console.log(response);
+
+        if (response && response.reason === "Success") {
+          this.notificationService.showSuccess("New Proposal submitted successfully.", "Success !");
+          this.router.navigate(['/home/proposals']);
+        } else {
+          this.notificationService.showError("Something went wrong.", "Error !")
+        }
+      }, error => (
+        console.log(error),
+        this.notificationService.showError("Error while submitting the proposal.", "Error !")
+      ));
     } else {
       alert('Form is invalid');
     }
+
+    
   }
 
   getDocumentImage(extension: string) {
@@ -223,6 +240,11 @@ export class NewProposalComponent implements OnInit {
     }
   }
   return formData;
-}
+  }
+
+  cancel() {
+    this.router.navigate(['/home/proposals']);
+  }
+
 }
 

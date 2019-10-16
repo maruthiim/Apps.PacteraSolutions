@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Application.RulesSetup;
 using Applications.Operations;
 using Common.DataObjects;
+using LiteDB;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
@@ -22,21 +23,61 @@ namespace Application.RFPSystem.Controllers
     {
 
 
-        [Route("api/V1/Data")]
-        [HttpPost]
-        public async Task<IActionResult> CreateRequest([FromForm]IList<IFormFile> excelFileName)
+        //[Route("api/V1/Data")]
+        //[HttpPost]
+        //public async Task<IActionResult> CreateRequest([FromForm]IList<IFormFile> excelFileName)
+        //{
+        //    string str = Request.Form["Sample"];
+        //    string str2 = Request.Form["Sample2"];
+        //    return Ok("Data Received " + str + " " + str2);
+        //}
+
+
+        [Route("GetProposals")]
+        [HttpGet]
+        public async Task<IActionResult> GetProposals(string requestID)
         {
-            string str = Request.Form["Sample"];
-            string str2 = Request.Form["Sample2"];
-            return Ok("Data Received " + str + " " + str2);
+            using (var dbComponent = new LiteDatabase(@"D:\LiteDB\RFPData.db"))
+            {
+                List<RFPRequestDataModel> rFPRequestDataModels = new List<RFPRequestDataModel>();
+                LiteCollection<RFPRequestDataModel> getRequestModels =
+                    dbComponent.GetCollection<RFPRequestDataModel>("RequestProposals");
+
+                if (string.IsNullOrEmpty(requestID))
+                {
+                    var listAll = getRequestModels.FindAll().ToList();
+
+                    
+
+                    listAll.ForEach(x=>rFPRequestDataModels.Add(x));
+
+                    return Ok(listAll);
+
+                }
+                else
+                {
+                    var matchResponse = getRequestModels.Find(x => x.RFPCode.Equals(requestID)).Any();
+
+                    if(matchResponse)
+                    {
+                        var results = getRequestModels.Find(x => x.RFPCode.Equals(requestID)).ToList();
+
+                        results.ForEach(x => rFPRequestDataModels.Add(x));
+
+                        return Ok(results);
+                    }
+                    else
+                    {
+                        return Ok(new { Reason = "Not Found", Response = "No Record on "+requestID });
+                    }
+
+                }
+            }
         }
-
-
-        
 
         [Route("CreateProposal")]
         [HttpPost]
-        public async Task<IActionResult> CreateRequestM([FromForm]RFPRequestDataModel proposalDataModel)
+        public async Task<IActionResult> CreateRequest([FromForm]RFPRequestDataModel proposalDataModel)
         {
             try
             {
@@ -45,58 +86,37 @@ namespace Application.RFPSystem.Controllers
                     JsonConvert.DeserializeObject<RFPRequestDataModel>(Request.Form["proposalData"]);
 
 
-                var ConnectionString = "mongodb://10.130.4.144:27017";
+                using (var dbComponent = new LiteDatabase(@"D:\LiteDB\RFPData.db"))
+                {
+                    LiteCollection<RFPRequestDataModel> createRequestModel =
+                        dbComponent.GetCollection<RFPRequestDataModel>("RequestProposals");
 
-                var client = new MongoClient(ConnectionString);
-                var db = client.GetDatabase("local");
+                    var matchResponse = 
+                        createRequestModel.Find(rFPRequest => rFPRequest.RFPCode.Equals(rFPRequestDataModel.RFPCode)).Any();
 
-               // db.CreateCollection("RFPRequestCollection");
+                   
+                    if (!matchResponse)
+                    {
 
-                var col = db.GetCollection<BsonDocument>("RFPRequestCollection");
+                        createRequestModel.Insert(rFPRequestDataModel);
 
-                var doc = BsonDocument.Create(rFPRequestDataModel).ToBsonDocument();
+                        createRequestModel.EnsureIndex(rFPRequest => rFPRequest.RFPCode);
 
+                    }
+                    else
+                    {
+                        return Ok(new { Reason = "Duplicate Request by ID" + rFPRequestDataModel.RFPCode, InvalidRequest = Request.Form["proposalData"].ToString() });
+                    }
+                }
 
-                await col.InsertOneAsync(doc);
-
-                return Ok("Document Inserted");
+                return Ok(new { Reason = "Success", Response = Request.Form["proposalData"].ToString() } );
             }
             catch(Exception ex)
             {
                 return Ok(ex);
             }
 
-            //    var obje = Request.Form.Files;
-
-                
-
-            //    var objKeys = Request.Form.Keys.ToList();
-
-            //    Dictionary<string, object> dict = new Dictionary<string, object>();
-
-                
-
-            //    var json = JsonConvert.SerializeObject(objKeys);
-
-            //    using (IAsyncValidations asyncValidations = new ValdiateRules())
-            //    {
-            //        using (Task<ValidateResponse> validateResponse = asyncValidations.ValidateProposalUser(proposalDataModel.proposalUsers))
-            //        {
-            //            if (validateResponse.Result.NoErrors)
-            //            {
-            //                return validateResponse.Result.controllerBase.Result;
-            //            }
-            //            else
-            //            {
-            //                return Ok("Proposal Request Submitted");
-            //            }
-            //        }
-            //    }
-            //}
-            //catch(Exception ex)
-            //{
-            //    return Ok(ex);
-            //}
+            
         }
 
     }
