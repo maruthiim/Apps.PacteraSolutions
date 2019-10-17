@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\App.RFPSystem.Services\App.RFPSystem.Services.csproj" />
     <ProjectReference Include="..\Application.RulesSetup\Application.RulesSetup.csproj" />
     <ProjectReference Include="..\Applications.Operations\Applications.Operations.csproj" />
     <ProjectReference Include="..\Common.DataObjects\Common.DataObjects.csproj" />

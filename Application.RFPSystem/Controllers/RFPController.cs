@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
+using App.RFPSystem.Services;
 using Application.RulesSetup;
 using Applications.Operations;
 using Common.DataObjects;
@@ -33,7 +34,47 @@ namespace Application.RFPSystem.Controllers
         //}
 
 
-        [Route("GetProposals")]
+        [Route("api/V1/GetAllUsers")]
+        [HttpGet]
+        public async Task<IActionResult> UsersInformation([FromForm]usersInfo usersInfo)
+        {
+            IEnumerable<RFPUsersInformation> allUsers = new List<RFPUsersInformation>();
+
+            using (ISyncRFPUsersInformation getAllUsers = new UserServices())
+            {
+                allUsers = await getAllUsers.rFPUsersInformation();
+            }
+
+            if(!string.IsNullOrEmpty(usersInfo.userName) && !string.IsNullOrEmpty(usersInfo.accessKey))
+            {
+                RFPUsersInformation rFPUsersInformation =
+                    allUsers.ToList().Find(c => (c.userName == usersInfo.userName) && (c.AccessKey == usersInfo.accessKey));
+
+                return Ok(rFPUsersInformation);
+            }
+            else
+            {
+                return Ok(allUsers);
+            }
+        }
+
+        [Route("api/V1/GetDataViz")]
+        [HttpGet]
+        public async Task<IActionResult> GetDatavisualization()
+        {
+            Task<DatavizCategory_Proposal> datavizCategory_Proposal;
+
+            using (ISyncDataViz syncDataViz = new DataVizServices())
+            {
+                datavizCategory_Proposal = syncDataViz.datavizCategory_Proposal();
+            }
+
+            return Ok(datavizCategory_Proposal);
+        }
+        
+
+
+        [Route("api/V1/GetProposals")]
         [HttpGet]
         public async Task<IActionResult> GetProposals(string requestID)
         {
@@ -75,7 +116,7 @@ namespace Application.RFPSystem.Controllers
             }
         }
 
-        [Route("CreateProposal")]
+        [Route("api/V1/CreateProposal")]
         [HttpPost]
         public async Task<IActionResult> CreateRequest([FromForm]RFPRequestDataModel proposalDataModel)
         {
@@ -85,31 +126,44 @@ namespace Application.RFPSystem.Controllers
                 RFPRequestDataModel rFPRequestDataModel =
                     JsonConvert.DeserializeObject<RFPRequestDataModel>(Request.Form["proposalData"]);
 
-
-                using (var dbComponent = new LiteDatabase(@"D:\LiteDB\RFPData.db"))
+                using (IAsyncValidations asyncValidations = new ValdiateRules())
                 {
-                    LiteCollection<RFPRequestDataModel> createRequestModel =
-                        dbComponent.GetCollection<RFPRequestDataModel>("RequestProposals");
 
-                    var matchResponse = 
-                        createRequestModel.Find(rFPRequest => rFPRequest.RFPCode.Equals(rFPRequestDataModel.RFPCode)).Any();
+                    ValidateResponse validateResponse = 
+                        await asyncValidations.validateProposalRequest(proposalDataModel);
 
-                   
-                    if (!matchResponse)
+                    if (validateResponse.NoErrors)
                     {
+                        using (var dbComponent = new LiteDatabase(@"D:\LiteDB\RFPData.db"))
+                        {
+                            LiteCollection<RFPRequestDataModel> createRequestModel =
+                                dbComponent.GetCollection<RFPRequestDataModel>("RequestProposals");
 
-                        createRequestModel.Insert(rFPRequestDataModel);
+                            var matchResponse =
+                                createRequestModel.Find(rFPRequest => rFPRequest.RFPCode.Equals(rFPRequestDataModel.RFPCode)).Any();
 
-                        createRequestModel.EnsureIndex(rFPRequest => rFPRequest.RFPCode);
 
+                            if (!matchResponse)
+                            {
+
+                                createRequestModel.Insert(rFPRequestDataModel);
+
+                                createRequestModel.EnsureIndex(rFPRequest => rFPRequest.RFPCode);
+
+                            }
+                            else
+                            {
+                                return Ok(new { Reason = "Duplicate Request by ID" + rFPRequestDataModel.RFPCode, InvalidRequest = Request.Form["proposalData"].ToString() });
+                            }
+                        }
+
+                        return Ok(new { Reason = "Success", Response = Request.Form["proposalData"].ToString() });
                     }
                     else
                     {
-                        return Ok(new { Reason = "Duplicate Request by ID" + rFPRequestDataModel.RFPCode, InvalidRequest = Request.Form["proposalData"].ToString() });
+                        return Ok(validateResponse);
                     }
                 }
-
-                return Ok(new { Reason = "Success", Response = Request.Form["proposalData"].ToString() } );
             }
             catch(Exception ex)
             {

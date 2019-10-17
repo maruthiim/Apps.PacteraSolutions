@@ -11,5 +11,7 @@ namespace Applications.Operations
         Task<ValidateResponse> ValidateProposalUser(ProposalUsers proposalUser);
 
         Task<IActionResult> CustomActionResult(Exception exception, HttpStatusCode statusCodeResult);
+
+        Task<ValidateResponse> validateProposalRequest(RFPRequestDataModel rFPRequestDataModel);
     }
 }
