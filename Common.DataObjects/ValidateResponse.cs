@@ -13,5 +13,7 @@ namespace Common.DataObjects
         public Exception exception { get; set; }
 
         public Task<IActionResult> controllerBase { get; set; }
+
+        public RFPRequestDataModel RequestBody { get; set; }
     }
 }

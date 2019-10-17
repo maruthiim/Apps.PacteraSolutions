@@ -1,7 +1,10 @@
-﻿using Applications.Operations;
+﻿using App.RFPSystem.Services;
+using Applications.Operations;
 using Common.DataObjects;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -12,6 +15,45 @@ namespace Application.RulesSetup
         public void Dispose()
         {
             //throw new NotImplementedException();
+        }
+
+
+        public async Task<ValidateResponse> validateProposalRequest(RFPRequestDataModel rFPRequestDataModel)
+        {
+
+            ValidateResponse validateResponse = new ValidateResponse();
+            validateResponse.NoErrors = true;
+
+            IEnumerable<RFPUsersInformation> allUsers = new List<RFPUsersInformation>();
+
+            allUsers = await new UserServices().rFPUsersInformation();
+
+            RFPUsersInformation rFPUsersInformation =
+                    allUsers.ToList().Find(x => x.userName == rFPRequestDataModel.RFPUser.ToString());
+
+            if(rFPUsersInformation != null)
+            {
+                if(rFPUsersInformation.Role == ProposalUsers.SalesLead.ToString())
+                {
+                    return await Task.Run(() => validateResponse);
+                }
+                else
+                {
+                    validateResponse.NoErrors = false;
+                    validateResponse.exception = new ArgumentException("User Must be " + ProposalUsers.SalesLead.ToString());
+                    validateResponse.controllerBase = CustomActionResult(validateResponse.exception, HttpStatusCode.Forbidden);
+                    validateResponse.RequestBody = rFPRequestDataModel;
+                }
+            }
+            else
+            {
+                validateResponse.NoErrors = false;
+                validateResponse.exception = new ArgumentException("User Must be " + ProposalUsers.SalesLead.ToString());
+                validateResponse.controllerBase = CustomActionResult(validateResponse.exception, HttpStatusCode.Forbidden);
+                validateResponse.RequestBody = rFPRequestDataModel;
+            }
+
+            return await Task.Run(() => validateResponse);
         }
 
         public async Task<ValidateResponse> ValidateProposalUser(ProposalUsers proposalUser)
