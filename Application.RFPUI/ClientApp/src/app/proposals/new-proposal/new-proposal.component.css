@@ -70,21 +70,22 @@
 
 /* Mat expansion CSS*/
 mat-expansion-panel-header {
-  background-color: gray;
+  background-color: lightgray;
 }
 
   mat-expansion-panel-header:hover {
-    background-color: gray !important;
+    background-color: lightgray !important;
   }
 
 .mat-expanded mat-expansion-panel-header {
-  background-color: gray !important;
+  background-color: lightgray !important;
   border-radius: 0px !important;
 }
 
 mat-panel-title {
-  color: white;
+  color: black;
   font-weight: bold;
+  font-style: italic;
 }
 
 ::ng-deep .mat-expansion-panel-body { /*ng-deep for ovverriding mat css*/

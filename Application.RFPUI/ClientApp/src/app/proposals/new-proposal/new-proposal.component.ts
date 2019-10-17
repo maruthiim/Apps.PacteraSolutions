@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
-import { ProposalService } from '../../services/proposal.service';
+import { ProposalService } from '../proposal.service';
 import { NotificationService } from '../../services/notification.service';
 import { Router } from '@angular/router';
+import { RequestTypes } from '../../global/constants';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class NewProposalComponent implements OnInit {
   questionnaireForm: FormArray;
   questionForm: FormArray;
   fileStream: any;
+  requestTypes: any;
 
   constructor(private formBuilder: FormBuilder,
     private proposalService: ProposalService,
@@ -25,6 +27,7 @@ export class NewProposalComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.requestTypes = RequestTypes;
     this.createForm();
   }
 
@@ -157,7 +160,10 @@ export class NewProposalComponent implements OnInit {
     if (this.newProposalForm.valid) {
 
       const newProposalData = (<any>Object).assign({}, this.newProposalForm.value);
+      console.log(newProposalData);
       delete newProposalData['documents'];
+      console.log(newProposalData);
+
       const documentList = this.newProposalForm.value.documents;
 
       // const newProposalFormData = this.createFormData(newProposalData);

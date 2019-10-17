@@ -13,6 +13,21 @@
   /*border-radius: 25px;*/
 }
 
+.pageTitle1 {
+  text-align: center;
+  width: 200px;
+  height: 30px;
+  /*background-color: lightblue;*/
+  background: linear-gradient(to right, #00163b, #00163b);
+  color: white;
+  margin: 10px;
+  padding: 5px;
+  /*border-left: 25px solid darkgray;*/
+  /*border-radius: 25px;*/
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
 .page {
   width: 100%;
   height: calc( 100vh - 75px );
@@ -77,4 +92,21 @@ mat-label label {
 
 .mat-form-field-infix {
   border-top: none !important;
+}
+
+/* Loader */
+.static-loader {
+  height: 100%;
+  width: 100%;
+  z-index: 999999999;
+  top: 0;
+  left: 0;
+  background: #0000005e;
+  position: fixed;
+  padding: 20% 40% 40% 45%;
+}
+
+.imgloader {
+  width: 100px;
+  height: 100px;
 }

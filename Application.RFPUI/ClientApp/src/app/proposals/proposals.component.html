@@ -52,7 +52,10 @@
         <ng-container matColumnDef="requestCode" class="container">
           <mat-header-cell *matHeaderCellDef class="header-cell" mat-sort-header> RFP Code </mat-header-cell>
           <mat-cell *matCellDef="let element" class="cell">
-            <span class="sort-header">{{element.rfpCode}}</span>
+            <!--<span class="sort-header">{{element.rfpCode}}</span>-->
+            <a fxFlexFill [routerLink]="['/home/viewProposal',element.rfpCode]" class="mat-row-link cell">
+              {{element.rfpCode}}
+            </a>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="title" class="container">

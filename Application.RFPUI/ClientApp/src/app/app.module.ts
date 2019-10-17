@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from './core/AngularMaterialModule';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -23,7 +24,7 @@ import { ViewProposalComponent } from './proposals/view-proposal/view-proposal.c
 import { LoaderComponent } from './loader/loader.component';
 
 import { HttpService } from './global/http.service';
-import { ProposalService } from './services/proposal.service';
+import { ProposalService } from './proposals/proposal.service';
 import { LoginService } from './services/login.service';
 import { LoaderService } from './loader/loader.service';
 
@@ -55,7 +56,8 @@ import { AdministrationComponent } from './administration/administration.compone
     AppRoutingModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ChartsModule
   ],
   providers: [HttpService, ProposalService, LoginService, LoaderService,
     {

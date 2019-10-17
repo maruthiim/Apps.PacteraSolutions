@@ -1,0 +1,11 @@
+.chart {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.col-lg-12 .chart canvas {
+  height: 200px;
+}

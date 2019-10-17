@@ -48,4 +48,65 @@ exports.Roles = [
         roleName: 'DeliveryLead'
     }
 ];
+exports.RequestTypes = [
+    {
+        requestTypeId: 1,
+        requestTypeName: 'Project'
+    },
+    {
+        requestTypeId: 2,
+        requestTypeName: 'Resource'
+    }
+];
+exports.RFPSampleData = {
+    "RFPUser": null,
+    "RFPCode": "UPS_MS_",
+    "status": "New",
+    "requestType": "1",
+    "customer": "Customer",
+    "location": "Location",
+    "requestedDate": "2019-10-16T18:30:00.000Z",
+    "title": "Title",
+    "scope": "Scope",
+    "description": "Desc",
+    "additionalInformation": "No",
+    "schedule": [
+        {
+            "milestone": "A",
+            "scheduleStartDate": "2019-10-16T18:30:00.000Z",
+            "scheduleEndDate": "2019-10-17T18:30:00.000Z",
+            "remarks": "A"
+        },
+        {
+            "milestone": "B",
+            "scheduleStartDate": "2019-10-17T18:30:00.000Z",
+            "scheduleEndDate": "2019-10-17T18:30:00.000Z",
+            "remarks": "B"
+        }
+    ],
+    "questionnaire": [
+        {
+            "questionnaireArea": "A",
+            "questions": [
+                {
+                    "question": "A",
+                    "answer": "A"
+                },
+                {
+                    "question": "A",
+                    "answer": "A"
+                }
+            ]
+        },
+        {
+            "questionnaireArea": "B",
+            "questions": [
+                {
+                    "question": "B",
+                    "answer": "B"
+                }
+            ]
+        }
+    ]
+};
 //# sourceMappingURL=constants.js.map

@@ -3,7 +3,7 @@ import { MatPaginator, MatTableDataSource, MatSnackBar, MatSnackBarConfig, MatPr
 import { FormControl } from '@angular/forms';
 import { ProposalRequest } from '../view-models/proposal-request-view-model';
 import { Router } from '@angular/router';
-import { ProposalService } from '../services/proposal.service';
+import { ProposalService } from './proposal.service';
 
 @Component({
   selector: 'app-proposals',
@@ -19,7 +19,7 @@ export class ProposalsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  displayedColumns = ['action', 'id', 'requestType', 'requestCode', 'title', 'status', 'scope', 'createdBy'];
+  displayedColumns = ['requestCode', 'title', 'requestType', 'status', 'scope', 'createdBy'];
 
 
   constructor(private router: Router,
