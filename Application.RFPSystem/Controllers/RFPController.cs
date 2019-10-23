@@ -34,8 +34,8 @@ namespace Application.RFPSystem.Controllers
         //}
 
 
-        [Route("api/V1/GetAllUsers")]
-        [HttpGet]
+        [Route("api/V1/Authenticate")]
+        [HttpPost]
         public async Task<IActionResult> UsersInformation([FromForm]usersInfo usersInfo)
         {
             IEnumerable<RFPUsersInformation> allUsers = new List<RFPUsersInformation>();
@@ -130,7 +130,7 @@ namespace Application.RFPSystem.Controllers
                 {
 
                     ValidateResponse validateResponse = 
-                        await asyncValidations.validateProposalRequest(proposalDataModel);
+                        await asyncValidations.validateProposalRequest(rFPRequestDataModel);
 
                     if (validateResponse.NoErrors)
                     {

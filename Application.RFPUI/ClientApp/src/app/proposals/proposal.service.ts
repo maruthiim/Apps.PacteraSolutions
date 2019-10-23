@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpService } from '../global/http.service';
+import { HttpService } from '../services/http.service';
 
 @Injectable()
 

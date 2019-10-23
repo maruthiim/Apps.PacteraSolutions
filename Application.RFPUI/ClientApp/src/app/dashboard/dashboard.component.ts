@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
-import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, Color } from 'ng2-charts';
+import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, Color, MultiDataSet } from 'ng2-charts';
+import { DashboardService } from './dashboard.service';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,17 +11,18 @@ import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsToolt
 })
 export class DashboardComponent implements OnInit {
 
+  constructor(private dashboardService: DashboardService) { }
+
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
       position: "right"
     }
   };
-  public pieChartLabels: Label[] = ['Self Creation', 'Created by others'];
-  public pieChartData: SingleDataSet = [12, 48];
+  public pieChartLabels: Label[] =[]; // = ['Self Creation', 'Created by others'];
+  public pieChartData: SingleDataSet = []; // = [12, 48];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-  public pieChartPlugins = [];
   public pieChartColors = [{ backgroundColor: ["#e84351", "#434a54", "#3ebf9b", "#4d86dc", "#f3af37"] }];
 
   public barChartOptions: any = {
@@ -35,12 +38,19 @@ export class DashboardComponent implements OnInit {
           stepSize: 10
         }
       }]
+    },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
     }
   };
 
   public mbarChartLabels: string[] = ['Status'];
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
+  public barChartPlugins = [pluginDataLabels];
 
   public barChartColors = [
     { backgroundColor: ["#e84351"] },
@@ -57,13 +67,13 @@ export class DashboardComponent implements OnInit {
     { data: [35], label: 'Delivery' },
   ];
 
-  public chartType: string = 'doughnut';
-  public chartLabels: Array<string> = ['Jan', 'Feb', 'Mar'];
-  public chartData: Array<number> = [1, 1, 1];
+  public chartType: ChartType = 'doughnut';
+  public chartLabels: Label[] = ['Jan', 'Feb', 'Mar'];
+  public chartData: MultiDataSet = [[1, 1, 1]];
   public chartOptions: ChartOptions = {
     responsive: true,
     legend: {
-      position: "right"
+      position: "bottom"
     }
   };
   public chartColors: Array<any> = [{ backgroundColor: ["#e84351", "#434a54", "#3ebf9b", "#4d86dc", "#f3af37"] }];
@@ -97,9 +107,34 @@ export class DashboardComponent implements OnInit {
   public lineChartPlugins = [];
   
 
-  constructor() { }
+  
 
   ngOnInit() {
+
+
+    this.getChartData();
+
+  }
+
+  getChartData() {
+    this.dashboardService.getChartData().subscribe((response: any) => {
+      if (response && response.result) {
+        var chartData: any[] = response.result.data;
+        var pieLabels = [];
+        var pieData = [];
+        //for (let i = 0; i <= chartData.length; i++) {
+        for (let i = 0; i <= 5; i++) {
+          pieLabels.push(chartData[i].userName.split('@', 1)[0]);
+          pieData.push(chartData[i].proposalsCount);
+        }
+
+        this.pieChartLabels = pieLabels;
+        this.pieChartData = pieData;
+
+
+
+      }
+    });
   }
 
 }

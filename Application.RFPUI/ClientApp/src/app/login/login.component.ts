@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Form, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '../services/login.service';
+import { LoginService } from './login.service';
 import { UserData } from '../global/constants';
 
 @Component({
@@ -50,25 +50,40 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password').value;
 
     // Temporary process
-    if (username === 'admin' && password === 'password') {
-      this.router.navigate(['']);
-    } else {
-      this.isValidCredentials = false;
-    }
+    //if (username === 'Thomson@pactera.com' && password === 'password') {
+    //  this.router.navigate(['']);
+    //} else {
+    //  this.isValidCredentials = false;
+    //}
 
     // Main Login Process
 
     const loginData = new FormData();
-    loginData.append('username', username);
-    loginData.append('password', password);
+    loginData.append('userName', username);
+    loginData.append('accessKey', password);
 
-    // this.loginService.login(loginData).subscribe((response: any) => {
-    //  alert('Login Success !!!!');
-    // });
+    this.loginService.login(loginData).subscribe((response: any) => {
+      if (response) {
+        this.userData = response;
+        this.loginService.setSessionStorage('token', 'TOKEN');
+        this.loginService.setSessionStorage('userid', this.userData.id);
+        this.loginService.setSessionStorage('userName', this.userData.userName);
+        this.loginService.setSessionStorage('role', this.userData.role);
+        this.validateStorage();
+      } else {
+        this.isValidCredentials = false;
+      }
+     });
+  }
 
-
-    this.userData = UserData;
-    this.loginService.setSessionStorage('token', UserData.token);
+  validateStorage() {
+    const userName = this.loginService.getSessionStorage('userName');
+    const role = this.loginService.getSessionStorage('role');
+    if (userName && role) {
+      this.router.navigate(['']);
+    } else {
+      this.isValidCredentials = false;
+    }
   }
 
 }

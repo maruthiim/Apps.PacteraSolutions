@@ -5,13 +5,14 @@
         <img alt="Pactera" class="imagePactera" src="assets/images/TopNavLogo.png">
       </a>
       <label class="devider"> | </label>
-      <label class="RFP"> RFP </label>
+      <!--<label class="RFP"> RFP </label>-->
+      <label class="proposalSystem"> Proposal System </label>
     </div>
 
     <div class="col-md-6">
       <div class="navbar-right">
         <div class="profileUser">
-          <label>Welcome : Aravindu Kumar Gattu</label>
+          <label>Welcome : {{ userNmae }} , {{ role }} </label>
           <a class="pull-right" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
         </div>
 
@@ -30,7 +31,7 @@
       </li>
 
       <li *ngFor="let menu of MenuList" class="list-group-item" routerLinkActive="active" [routerLink]="menu.path">
-        <a><i class="glyphicon" [ngClass]="menu.class" aria-hidden="true" title="{{menu.title}}"></i><span>{{menu.title}}</span></a>
+        <a><i class="glyphicon" [ngClass]="menu.data.class" aria-hidden="true" title="{{menu.data.title}}"></i><span>{{menu.data.title}}</span></a>
       </li>
 
       <!--<li class="list-group-item" routerLinkActive="active" [routerLink]="dashboard">

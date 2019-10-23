@@ -43,7 +43,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\global\constants.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\global\data-json.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\routes\routes.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\services\route-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\routes\route-guard.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

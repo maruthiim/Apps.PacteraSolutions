@@ -13,7 +13,12 @@
   /*border-radius: 25px;*/
 }
 
-.pageTitle1 {
+.banner {
+  width: 100%;
+  background-color: gainsboro;
+}
+
+.bannerTitle {
   text-align: center;
   width: 200px;
   height: 30px;

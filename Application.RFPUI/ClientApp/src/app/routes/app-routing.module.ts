@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { routes } from '../routes/routes';
-import { RouteGuardService } from '../services/route-guard.service';
+import { RouteGuardService } from './route-guard.service';
 
 
 

@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { ProposalService } from '../proposal.service';
 import { NotificationService } from '../../services/notification.service';
 import { Router } from '@angular/router';
-import { RequestTypes } from '../../global/constants';
+import { RequestTypes, RFPSampleData } from '../../global/constants';
 
 
 @Component({
@@ -163,6 +163,7 @@ export class NewProposalComponent implements OnInit {
       console.log(newProposalData);
       delete newProposalData['documents'];
       console.log(newProposalData);
+      newProposalData.RFPUser = sessionStorage.getItem('userName');
 
       const documentList = this.newProposalForm.value.documents;
 
@@ -180,14 +181,21 @@ export class NewProposalComponent implements OnInit {
 
         if (response && response.reason === "Success") {
           this.notificationService.showSuccess("New Proposal submitted successfully.", "Success !");
-          this.router.navigate(['/home/proposals']);
+          this.router.navigate(['/app/proposals']);
         } else {
-          this.notificationService.showError("Something went wrong.", "Error !")
+          this.notificationService.showError(JSON.stringify(response), 'Error');
         }
-      }, error => (
-        console.log(error),
-        this.notificationService.showError("Error while submitting the proposal.", "Error !")
-      ));
+      }, (error: any) => {
+
+          console.log(error);
+
+          if (error.status === 200) {
+            this.notificationService.showError(JSON.stringify(error.error.text), "Error !");
+          } else {
+            this.notificationService.showError(error.status + error.statusText, "Error !")
+          }
+
+      });
     } else {
       alert('Form is invalid');
     }
@@ -249,7 +257,41 @@ export class NewProposalComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/home/proposals']);
+    this.router.navigate(['/app/proposals']);
+  }
+
+  fillSampleData() {
+    this.dataLoad(RFPSampleData);
+  }
+
+  dataLoad(data: any) {
+    if (data) {
+      if (data.schedule.length > 0) {
+        this.removeSchedule(0);
+        for (let i = 0; i < data.schedule.length; i++) {
+          this.addNewSchedule();
+        }
+      }
+      //if (data.documents.length > 0) {
+      //  this.removeDocument(0);
+      //  for (let i = 0; i < data.documents.length; i++) {
+      //    this.addNewDocument();
+      //  }
+      //}
+      if (data.questionnaire.length > 0) {
+        this.removeQuestionnaire(0);
+        for (let i = 0; i < data.questionnaire.length; i++) {
+          this.addNewQuestionnaire();
+          if (data.questionnaire[i].questions.length > 0) {
+            this.removeQuestion(i, 0);
+            for (let j = 0; j < data.questionnaire[i].questions.length; j++) {
+              this.addNewQuestion(i);
+            }
+          }
+        }
+      }
+      this.newProposalForm.patchValue(data);
+    }
   }
 
 }

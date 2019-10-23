@@ -3,6 +3,9 @@ import { FormGroup, FormControl, FormBuilder, FormArray } from '@angular/forms';
 import { ProposalData } from '../../global/data-json';
 import * as FileSaver from 'file-saver';
 import { ProposalService } from '../proposal.service';
+import { RequestTypes } from '../../global/constants';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-view-proposal',
@@ -19,11 +22,14 @@ export class ViewProposalComponent implements OnInit {
   questionnaireForm: FormArray;
   questionForm: FormArray;
   fileStream: any;
+  requestTypes: any;
+  rfpCode: any;
 
   proposaldata: any = [];
 
   constructor(private formBuilder: FormBuilder,
-              private proposalService: ProposalService) {
+    private proposalService: ProposalService,
+    private activatedRoute: ActivatedRoute) {
     this.proposaldata = ProposalData;
     this.journeyData = [
       {
@@ -110,8 +116,17 @@ export class ViewProposalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.rfpCode = this.activatedRoute.snapshot.params.WorkflowID;
+    this.requestTypes = RequestTypes;
     this.createForm();
+
+
+    this.getProposaldata(this.rfpCode);
     this.dataLoad(this.proposaldata);
+  }
+
+  getProposaldata(RFPCode: any) {
+
   }
 
   dataLoad(data: any) {
@@ -132,7 +147,7 @@ export class ViewProposalComponent implements OnInit {
         this.removeQuestionnaire(0);
         for (let i = 0; i < data.questionnaire.length; i++) {
           this.addNewQuestionnaire();
-          if (data.documents.length > 0) {
+          if (data.questionnaire[i].questions.length > 0) {
             this.removeQuestion(i, 0);
             for (let j = 0; j < data.questionnaire[i].questions.length; j++) {
               this.addNewQuestion(i);

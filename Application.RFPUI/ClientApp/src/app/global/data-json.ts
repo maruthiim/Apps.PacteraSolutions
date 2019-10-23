@@ -2,7 +2,7 @@ export const ProposalData = {
   RFPID: 123,
   RFPCode: 'PCT001IKEA',
   status: 'In Draft',
-  requestType: 'option1',
+  requestType: '1',
   customer: 'IKEA',
   location: 'Hyderabad',
   requestedDate: '2019-09-03T18:30:00.000Z',

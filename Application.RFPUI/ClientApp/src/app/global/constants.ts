@@ -18,6 +18,11 @@ export const NavbarMenu = [
     path: 'administration',
     title: 'Administration',
     class: 'glyphicon-wrench'
+  },
+  {
+    path: 'plannerName',
+    title: 'Planner',
+    class: 'glyphicon-copy'
   }
 ];
 
@@ -31,24 +36,13 @@ export const UserData =
   token: 'XDRTYIE$RTTYIDLEO'
 };
 
-export const Roles = [
-  {
-    roleId: 1,
-    roleName: 'SalesLead'
-  },
-  {
-    roleId: 2,
-    roleName: 'PursuitLead'
-  },
-  {
-    roleId: 3,
-    roleName: 'PracticeLead'
-  },
-  {
-    roleId: 4,
-    roleName: 'DeliveryLead'
-  }
-]
+export const Roles = {
+  ALL: 'All',
+  Sales_Lead: 'SalesLead',
+  Practice_Lead: 'PracticeLead',
+  Pursuit_Team_Lead: 'PursuitTeamLead',
+  Delivery_TeamLead: 'DeliveryTeamLead'
+}
 
 export const RequestTypes = [
   {
@@ -64,50 +58,50 @@ export const RequestTypes = [
 export const RFPSampleData =
   {
     "RFPUser": null,
-    "RFPCode": "UPS_MS_",
+    "RFPCode": "MS_CSS_Coach_Bot",
     "status": "New",
     "requestType": "1",
-    "customer": "Customer",
-    "location": "Location",
-    "requestedDate": "2019-10-16T18:30:00.000Z",
-    "title": "Title",
-    "scope": "Scope",
-    "description": "Desc",
+    "customer": "Microsoft",
+    "location": "Singapore",
+    "requestedDate": "2019-10-18T18:30:00.000Z",
+    "title": "Microsoft CSS Coach Bot",
+    "scope": "AI and Machine Learning",
+    "description": "Customer Service Support application",
     "additionalInformation": "No",
     "schedule": [
       {
-        "milestone": "A",
-        "scheduleStartDate": "2019-10-16T18:30:00.000Z",
-        "scheduleEndDate": "2019-10-17T18:30:00.000Z",
-        "remarks": "A"
+        "milestone": "Q & A",
+        "scheduleStartDate": "2019-10-18T18:30:00.000Z",
+        "scheduleEndDate": "2019-10-20T18:30:00.000Z",
+        "remarks": "Q&A conversation"
       },
       {
-        "milestone": "B",
-        "scheduleStartDate": "2019-10-17T18:30:00.000Z",
-        "scheduleEndDate": "2019-10-17T18:30:00.000Z",
-        "remarks": "B"
+        "milestone": "Proposal Submit",
+        "scheduleStartDate": "2019-10-21T18:30:00.000Z",
+        "scheduleEndDate": "2019-10-23T18:30:00.000Z",
+        "remarks": "Complete Proposal submit"
       }
     ],
     "questionnaire": [
       {
-        "questionnaireArea": "A",
+        "questionnaireArea": "Basic",
         "questions": [
           {
-            "question": "A",
-            "answer": "A"
+            "question": "Is the current data on-premise? Is each data centre for each country or each store?",
+            "answer": "There is on-premise (eg. NAV), each store. There is also on cloud (eg. CRM)"
           },
           {
-            "question": "A",
-            "answer": "A"
+            "question": "Is the current data stored in a centralized repository? If so, what is the repository?",
+            "answer": "Current data for BI tool consumption stored in QVD + SQL DWH server – non processing of personal data "
           }
         ]
       },
       {
-        "questionnaireArea": "B",
+        "questionnaireArea": "Main",
         "questions": [
           {
-            "question": "B",
-            "answer": "B"
+            "question": "Does ISEAMX have a cloud- first strategy? If yes, what cloud does ISEAMX prefer?",
+            "answer": "Strategy not yet defined, open for proposal. Take into consideration of data residency and data sovereignty legislation of all operating countries: Singapore, Malaysia, Thailand, Philippines, Mexico "
           }
         ]
       }

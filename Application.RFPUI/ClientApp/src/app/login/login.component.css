@@ -206,6 +206,16 @@
   color: white;
 }
 
+.proposalSystem {
+  position: absolute;
+  font-size: 25px;
+  left: 180px;
+  font-family: 'Verdana';
+  top: 5px;
+  color: white;
+  font-style: italic;
+}
+
 .hiddenFlow {
   overflow-y: hidden;
 }

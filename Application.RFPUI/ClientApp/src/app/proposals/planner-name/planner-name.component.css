@@ -1,0 +1,46 @@
+.planName {
+  width: 400px;
+  margin: auto;
+  font-family: 'Segoe UI';
+  vertical-align: middle;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid darkgray;
+  margin-top: 180px;
+}
+
+
+.input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top: 20px;
+  height: 50px;
+  border-bottom: 1px solid darkgray;
+}
+
+.input-field {
+  width: 100%;
+  padding: 15px 0px 15px 0px;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Segoe UI';
+  border: none;
+}
+
+.btn {
+  background-color: #0067b8;
+  height: 32px;
+  width: 100%;
+  font-size: 16px;
+  color: white;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  padding: 3px 0px 3px 0px;
+  border-radius: 0px;
+  margin-left: 3px;
+}

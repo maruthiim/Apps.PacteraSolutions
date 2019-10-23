@@ -346,7 +346,7 @@ export class ProposalsComponent implements OnInit {
   }
 
   newProposal() {
-    this.router.navigate(['/home/newProposal']);
+    this.router.navigate(['/app/newProposal']);
   }
 
 }

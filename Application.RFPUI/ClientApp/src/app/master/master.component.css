@@ -46,6 +46,16 @@
   color:white;
 }
 
+.proposalSystem {
+  margin-left: 15px;
+  margin-top: 5px;
+  font-size: 24px;
+  font-family: 'Verdana';
+  font-style: italic;
+  color: white;
+  font-weight: 300;
+}
+
 .profileUser a {
   color: white;
   padding: 14px 16px;

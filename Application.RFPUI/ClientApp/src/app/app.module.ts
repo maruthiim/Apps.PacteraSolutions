@@ -23,13 +23,17 @@ import { NewProposalComponent } from './proposals/new-proposal/new-proposal.comp
 import { ViewProposalComponent } from './proposals/view-proposal/view-proposal.component';
 import { LoaderComponent } from './loader/loader.component';
 
-import { HttpService } from './global/http.service';
+import { HttpService } from './services/http.service';
 import { ProposalService } from './proposals/proposal.service';
-import { LoginService } from './services/login.service';
+import { LoginService } from './login/login.service';
 import { LoaderService } from './loader/loader.service';
+import { DashboardService } from './dashboard/dashboard.service';
 
 import { LoaderInterceptor } from './loader/loaderIntercepter';
 import { AdministrationComponent } from './administration/administration.component';
+import { PlannerProposalComponent } from './proposals/planner-proposal/planner-proposal.component';
+import { PlannerNameComponent } from './proposals/planner-name/planner-name.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,10 @@ import { AdministrationComponent } from './administration/administration.compone
     NewProposalComponent,
     ViewProposalComponent,
     LoaderComponent,
-    AdministrationComponent
+    AdministrationComponent,
+    PlannerProposalComponent,
+    PlannerNameComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -59,7 +66,7 @@ import { AdministrationComponent } from './administration/administration.compone
     ToastrModule.forRoot(),
     ChartsModule
   ],
-  providers: [HttpService, ProposalService, LoginService, LoaderService,
+  providers: [HttpService, ProposalService, LoginService, LoaderService, DashboardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
