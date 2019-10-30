@@ -5,12 +5,17 @@
 
     <!--<div class="pageTitle"><b>New Request For Proposal</b></div>-->
     <div class="banner">
-      <div class="bannerTitle">
+      <div class="bannerTitle1">
         <b>New Proposal</b>
       </div>
-    </div>
-    <div>
-      <button class="btn btn-primary" (click)="fillSampleData()">Sample Data</button>
+      <div class="bannerTitle2">
+        <b>Please fill the form and submit to proceed !!</b>
+      </div>
+      <div>
+        <button mat-icon-button (click)="fillSampleData()" title="Import Sample Data">
+          <span class="glyphicon glyphicon-import"></span>
+        </button>
+      </div>
     </div>
 
     <div class="proposalDiv">
@@ -34,20 +39,26 @@
                       <mat-option value="Request Type 2">Request Type 2</mat-option>
                       <mat-option value="Request Type 3">Request Type 3</mat-option>
                       <mat-option value="Request Type 4">Request Type 4</mat-option>-->
-                      <mat-option *ngFor="let data of requestTypes" value="{{data.requestTypeId}}">{{data.requestTypeName}}</mat-option>
+                      <mat-option *ngFor="let data of requestTypes" value="{{data.requestTypeName}}">{{data.requestTypeName}}</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
                   <mat-label>RFP Code <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput formControlName="RFPCode" required maxlength="50">
+                    <input matInput formControlName="rfpCode" required maxlength="50">
                   </mat-form-field>
                 </div>
-                <div class="col-lg-3">
+                <!--<div class="col-lg-3">
                   <mat-label>Status <label>*</label></mat-label>
                   <mat-form-field>
                     <input matInput formControlName="status" required maxlength="50" readonly>
+                  </mat-form-field>
+                </div>-->
+                <div class="col-lg-3">
+                  <mat-label>Title <label>*</label></mat-label>
+                  <mat-form-field>
+                    <input matInput formControlName="title" required maxlength="50">
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
@@ -58,10 +69,28 @@
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>
                 </div>
-                <div class="col-lg-6">
-                  <mat-label>Title <label>*</label></mat-label>
+                <div class="col-lg-3">
+                  <mat-label> Practice Type <label>*</label></mat-label>
                   <mat-form-field>
-                    <input matInput formControlName="title" required maxlength="50">
+                    <mat-select matinput formControlName="practiceType" required>
+                      <mat-option value="Engineering">Engineering</mat-option>
+                      <mat-option value="Digitalization">Digitalization</mat-option>
+                      <mat-option value="Globalization">Globalization</mat-option>
+                      <mat-option value="Emerging Tools">Emerging Tech</mat-option>
+                      <!--<mat-option *ngFor="let data of requestTypes" value="{{data.requestTypeId}}">{{data.requestTypeName}}</mat-option>-->
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-3">
+                  <mat-label> Practice Lead <label>*</label></mat-label>
+                  <mat-form-field>
+                    <mat-select matinput formControlName="practiceLead" required>
+                      <mat-option value="Practice Lead 1">Practice Lead 1</mat-option>
+                      <mat-option value="Practice Lead 2">Practice Lead 2</mat-option>
+                      <mat-option value="Practice Lead 3">Practice Lead 3</mat-option>
+                      <mat-option value="Practice Lead 4">Practice Lead 4</mat-option>
+                      <!--<mat-option *ngFor="let data of requestTypes" value="{{data.requestTypeId}}">{{data.requestTypeName}}</mat-option>-->
+                    </mat-select>
                   </mat-form-field>
                 </div>
                 <div class="col-lg-3">
@@ -361,7 +390,7 @@
 
         <br />
 
-        <div class="row">
+        <div>
           <button class="btn btn-success pull-right" type="submit" (click)="submit()">Submit</button>
           <button class="btn btn-danger pull-left" (click)="cancel()">Cancel</button>
         </div>

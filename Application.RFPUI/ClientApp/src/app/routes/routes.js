@@ -64,7 +64,7 @@ exports.childRoutes = [
         data: {
             title: 'Planner Proposal',
             class: 'glyphicon-copy',
-            menu: true,
+            menu: false,
             users: [constants_1.Roles.Sales_Lead]
         }
     },
@@ -80,7 +80,7 @@ exports.childRoutes = [
         }
     },
     {
-        path: 'viewProposal/:proposalID',
+        path: 'viewProposal/:RFPCode',
         component: view_proposal_component_1.ViewProposalComponent,
         canActivate: [route_guard_service_1.RouteGuardService],
         data: {

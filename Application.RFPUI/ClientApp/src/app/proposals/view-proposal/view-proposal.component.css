@@ -1,5 +1,17 @@
-/* Journey Section*/
+.proposalDiv {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /*padding: 0px 10px;*/
+}
 
+.details {
+  margin: 10px;
+  padding: 5px;
+  text-align: right;
+  color:chocolate;
+}
+
+/* Journey Section*/
 .journeysection {
   width: auto;
   /*white-space: nowrap;*/
@@ -235,5 +247,88 @@ td:nth-child(4) {
 .matIconButton {
   cursor: pointer;
 }
+
+/*Buttons*/
+.actionbtn {
+  margin-left: 5px;
+}
+
+
+/*New Horizontal Process*/
+
+.timelinehr {
+  padding-bottom: 30px;
+  padding-top: 10px;
+  list-style-type: none;
+  display: flex;
+  text-align: center;
+  overflow-x: auto;
+  background-color: #cecaca;
+}
+
+.timelinehr li {
+  transition: all 200ms ease-in;
+}
+
+.timestamp {
+  width: 200px;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 100;
+}
+
+.status {
+  padding: 0px 40px;
+  display: flex;
+  justify-content: center;
+  border-top: 3px solid gray;
+  position: relative;
+  transition: all 200ms ease-in;
+}
+
+.status span {
+  font-weight: 600;
+  font-size: 14px;
+  padding-top: 20px;
+}
+
+.status span:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: forestgreen;
+  border-radius: 25px;
+  border: 3px solid gray;
+  position: absolute;
+  top: -12px;
+  left: 42%;
+  transition: all 200ms ease-in;
+}
+
+.reject span:before {
+  background-color: orangered;
+}
+
+.swiper-control {
+  text-align: right;
+}
+
+.swiper-slide {
+  width: 200px;
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+}
+
+  /*.swiper-slide:nth-child(2n) {
+    width: 40%;
+  }
+
+  .swiper-slide:nth-child(3n) {
+    width: 40%;
+  }*/
 
 

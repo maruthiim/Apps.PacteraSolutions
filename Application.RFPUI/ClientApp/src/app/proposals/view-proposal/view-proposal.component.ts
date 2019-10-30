@@ -5,6 +5,8 @@ import * as FileSaver from 'file-saver';
 import { ProposalService } from '../proposal.service';
 import { RequestTypes } from '../../global/constants';
 import { ActivatedRoute } from '@angular/router';
+import { Roles } from '../../global/constants';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewProposalComponent implements OnInit {
 
   RequestJourney: any[];
-  journeyData: any;
+  steps: any[];
   proposalForm: FormGroup;
   documentsForm: FormArray;
   scheduleForm: FormArray;
@@ -23,34 +25,29 @@ export class ViewProposalComponent implements OnInit {
   questionForm: FormArray;
   fileStream: any;
   requestTypes: any;
-  rfpCode: any;
+  rfpCode: string;
+  proposalTitle: string;
+  porposalStatus: string;
+  proposalBy: string;
+  role: string;
+  roles: object;
 
   proposaldata: any = [];
 
   constructor(private formBuilder: FormBuilder,
     private proposalService: ProposalService,
     private activatedRoute: ActivatedRoute) {
-    this.proposaldata = ProposalData;
-    this.journeyData = [
-      {
-        step: 1
-      },
-      {
-        step: 2
-      },
-      {
-        step: 3
-      },
-      {
-        step: 4
-      },
-      {
-        step: 5
-      },
-      {
-        step: 6
-      }
+    //this.proposaldata = ProposalData;
+
+    this.steps = [
+      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
+      { dateLabel: '11 Oct, 2019 10:10', title: 'Rejected by PL', acceptance: false },
+      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
+      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
+      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
+      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
     ];
+    
     this.RequestJourney = [
           {
             Name: 'Stage 1',
@@ -81,69 +78,51 @@ export class ViewProposalComponent implements OnInit {
             status: 'Not Started',
             statusId: 1,
             dateTime: 'Date',
-          },
-          {
-            Name: 'Stage 1',
-            status: 'Completed',
-            statusId: 3,
-            dateTime: '09-08-2019'
-          },
-          {
-            Name: 'Stage 2',
-            status: 'Completed',
-            statusId: 3,
-            dateTime: '09-08-2019'
-          },
-          {
-            Name: 'Stage 3',
-            status: 'Cancelled',
-            statusId: 4,
-            dateTime: '09-08-2019',
-          },
-          {
-            Name: 'Stage 4',
-            status: 'In Progress',
-            statusId: 2,
-            dateTime: 'Date',
-          },
-          {
-            Name: 'Stage 5',
-            status: 'Not Started',
-            statusId: 1,
-            dateTime: 'Date',
           }
         ];
   }
 
   ngOnInit() {
-    this.rfpCode = this.activatedRoute.snapshot.params.WorkflowID;
+    this.rfpCode = this.activatedRoute.snapshot.params.RFPCode;
+    this.role = sessionStorage.getItem('role');
     this.requestTypes = RequestTypes;
+    this.roles = Roles;
     this.createForm();
 
 
     this.getProposaldata(this.rfpCode);
-    this.dataLoad(this.proposaldata);
+    //this.dataLoad(this.proposaldata);
   }
 
   getProposaldata(RFPCode: any) {
+    this.proposalService.getProposalDetails(RFPCode).subscribe((response: any) => {
+      if (response && response.length > 0) {
+        this.proposaldata = response[0];
+        this.proposalTitle = this.proposaldata.title;
+        this.porposalStatus = this.proposaldata.status;
+        this.proposalBy = this.proposaldata.rfpUser;
+        this.dataLoad(this.proposaldata);
+      }
+    }, (error: any) => {
 
+    })
   }
 
   dataLoad(data: any) {
     if (data) {
-      if (data.schedule.length > 0) {
+      if (data.schedule && data.schedule.length > 0) {
         this.removeSchedule(0);
         for (let i = 0; i < data.schedule.length; i++) {
           this.addNewSchedule();
         }
       }
-      if (data.documents.length > 0) {
+      if (data.documents && data.documents.length > 0) {
         this.removeDocument(0);
           for (let i = 0; i < data.documents.length; i++) {
           this.addNewDocument();
           }
       }
-      if (data.questionnaire.length > 0) {
+      if (data.questionnaire && data.questionnaire.length > 0) {
         this.removeQuestionnaire(0);
         for (let i = 0; i < data.questionnaire.length; i++) {
           this.addNewQuestionnaire();
@@ -161,9 +140,12 @@ export class ViewProposalComponent implements OnInit {
 
   createForm() {
     this.proposalForm = this.formBuilder.group({
-      RFPID: new FormControl(0),
-      RFPCode: new FormControl(0),
-      status: new FormControl(0),
+      RFPID: new FormControl(''),
+      rfpCode: new FormControl(''),
+      rfpUser: new FormControl(''),
+      status: new FormControl(''),
+      practiceType: new FormControl(''),
+      practiceLead: new FormControl(''),
       requestType: new FormControl(''),
       customer: new FormControl(''),
       location: new FormControl(''),

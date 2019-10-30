@@ -64,7 +64,7 @@ export const childRoutes: Routes = [
     data: {
       title: 'Planner Proposal',
       class: 'glyphicon-copy',
-      menu: true,
+      menu: false,
       users: [Roles.Sales_Lead]
     }
   },
@@ -80,7 +80,7 @@ export const childRoutes: Routes = [
     }
   },
   {
-    path: 'viewProposal/:proposalID',
+    path: 'viewProposal/:RFPCode',
     component: ViewProposalComponent,
     canActivate: [RouteGuardService],
     data: {

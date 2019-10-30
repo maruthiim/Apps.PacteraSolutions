@@ -1,6 +1,9 @@
 export const ProposalData = {
   RFPID: 123,
-  RFPCode: 'PCT001IKEA',
+  rfpUser: 'aravindu.gattu@pactera.com',
+  rfpCode: 'PCT001IKEA',
+  practiceType: 'Engineering',
+  practiceLead: 'Practice Lead 2',
   status: 'In Draft',
   requestType: '1',
   customer: 'IKEA',

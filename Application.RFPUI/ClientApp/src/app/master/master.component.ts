@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
-import { NavbarMenu } from '../global/constants';
 import { LoginService } from '../login/login.service';
 import { childRoutes } from '../routes/routes';
 
@@ -14,23 +13,23 @@ export class MasterComponent implements OnInit {
   public sideMenu = true;
   public appRoutes: Routes = [];
   public MenuList: any = [];
-  public userNmae: any;
-  public role: any;
+  public userNmae: string;
+  public role: string;
 
   constructor(private router: Router, private loginService: LoginService) { }
 
 
   ngOnInit() {
-    //this.MenuList = NavbarMenu;
     const user = this.loginService.getSessionStorage('userName');
-    this.userNmae = user.split('@', 1);
-    this.role = this.loginService.getSessionStorage('role');
-    this.MenuList = this.getMenuList();
+    const role = this.loginService.getSessionStorage('role');
+    this.userNmae = (user.split('@', 1)).toString();
+    this.role = role.replace(/([A-Z])/g, ' $1').trim();
+    this.MenuList = this.getMenuList(role);
   }
 
-  getMenuList() {
+  getMenuList(role: string) {
     var routes = childRoutes.filter(list => list.data.menu === true && list.data.users.filter((user) => {
-      return (user === 'All' || user === this.role)
+      return (user === 'All' || user === role)
     }).length > 0);
 
     return routes;

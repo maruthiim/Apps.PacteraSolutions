@@ -34,9 +34,11 @@ export class NewProposalComponent implements OnInit {
   createForm() {
     this.newProposalForm = this.formBuilder.group({
       // RFPID: new FormControl(0),
-      RFPUser: new FormControl(),
-      RFPCode: new FormControl(),
-      status: new FormControl('New'),
+      rfpUser: new FormControl(),
+      rfpCode: new FormControl(),
+      status: new FormControl('Submitted'),
+      practiceType: new FormControl(),
+      practiceLead: new FormControl(),
       requestType: new FormControl(''),
       customer: new FormControl(''),
       location: new FormControl(''),
@@ -163,7 +165,7 @@ export class NewProposalComponent implements OnInit {
       console.log(newProposalData);
       delete newProposalData['documents'];
       console.log(newProposalData);
-      newProposalData.RFPUser = sessionStorage.getItem('userName');
+      newProposalData.rfpUser = sessionStorage.getItem('userName');
 
       const documentList = this.newProposalForm.value.documents;
 
@@ -192,12 +194,12 @@ export class NewProposalComponent implements OnInit {
           if (error.status === 200) {
             this.notificationService.showError(JSON.stringify(error.error.text), "Error !");
           } else {
-            this.notificationService.showError(error.status + error.statusText, "Error !")
+            this.notificationService.showError(error.status + error.statusText, "Error !");
           }
 
       });
     } else {
-      alert('Form is invalid');
+      this.notificationService.showAlert("Please fill all the required details to submit the proposal.", "Alert !");
     }
 
     

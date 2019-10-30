@@ -14,22 +14,27 @@
 }
 
 .banner {
-  width: 100%;
-  background-color: gainsboro;
+  /*width: 100%;*/
+  display: inline-flex;
 }
 
-.bannerTitle {
+.bannerTitle1 {
   text-align: center;
-  width: 200px;
-  height: 30px;
-  /*background-color: lightblue;*/
-  background: linear-gradient(to right, #00163b, #00163b);
+  background-color: #00163b;
   color: white;
-  margin: 10px;
-  padding: 5px;
-  /*border-left: 25px solid darkgray;*/
-  /*border-radius: 25px;*/
+  margin: 10px 0px;
+  padding: 5px 30px 5px 30px;
   border-top-left-radius: 15px;
+  /*border-bottom-left-radius: 15px;*/
+}
+
+.bannerTitle2 {
+  text-align: center;
+  background-color: palegoldenrod;
+  color: black;
+  margin: 10px 0px;
+  padding: 5px 30px 5px 30px;
+  /*border-top-right-radius: 15px;*/
   border-bottom-right-radius: 15px;
 }
 

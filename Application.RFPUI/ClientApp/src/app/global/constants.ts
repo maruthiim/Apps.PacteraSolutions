@@ -58,16 +58,18 @@ export const RequestTypes = [
 export const RFPSampleData =
   {
     "RFPUser": null,
-    "RFPCode": "MS_CSS_Coach_Bot",
-    "status": "New",
-    "requestType": "1",
+    "rfpCode": 'PCT001IKEA',
+    "practiceType": 'Engineering',
+    "practiceLead": 'Practice Lead 2',
+    "status": "Submitted",
+    "requestType": "Project",
     "customer": "Microsoft",
     "location": "Singapore",
     "requestedDate": "2019-10-18T18:30:00.000Z",
     "title": "Microsoft CSS Coach Bot",
     "scope": "AI and Machine Learning",
     "description": "Customer Service Support application",
-    "additionalInformation": "No",
+    "additionalInformation": "Additional Information",
     "schedule": [
       {
         "milestone": "Q & A",

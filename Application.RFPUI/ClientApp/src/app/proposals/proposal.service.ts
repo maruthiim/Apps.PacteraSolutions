@@ -12,8 +12,8 @@ export class ProposalService {
     return this.httpService.makeGetRequest('GetProposals');
   }
 
-  public getProposalDetails(proposalID: any): Observable<any> {
-    return this.httpService.makeGetRequest('GetProposals');
+  public getProposalDetails(RFPCode: any): Observable<any> {
+    return this.httpService.makeGetRequest('GetProposals?requestID=' + RFPCode);
   }
 
   public addProposal(proposalData: any): Observable<any> {

@@ -32,6 +32,8 @@ namespace Common.DataObjects
         public string RFPCode { get; set; }
         public string status { get; set; }
         public string requestType { get; set; }
+        public string practiceType { get; set; }
+        public string practiceLead { get; set; }
         public string customer { get; set; }
         public string location { get; set; }
         public DateTime requestedDate { get; set; }
