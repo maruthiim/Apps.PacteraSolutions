@@ -166,7 +166,8 @@
                     <div class="timestamp">
                       <span class="date">{{item.dateLabel}}</span>
                     </div>
-                    <div class="{{!item.acceptance?'status reject':'status'}}">
+                    <div class="status" [ngClass]="{'reject': item.acceptance === 'No', 'pending': item.acceptance === 'Pending' }">
+                    <!--<div class="{{item.acceptance === 'No' ?'status reject':'status'}}">-->
                       <span>{{item.title}}</span>
                     </div>
                   </div>

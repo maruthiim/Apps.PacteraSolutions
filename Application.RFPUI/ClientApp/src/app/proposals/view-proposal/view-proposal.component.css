@@ -263,7 +263,6 @@ td:nth-child(4) {
   display: flex;
   text-align: center;
   overflow-x: auto;
-  background-color: #cecaca;
 }
 
 .timelinehr li {
@@ -284,7 +283,7 @@ td:nth-child(4) {
   padding: 0px 40px;
   display: flex;
   justify-content: center;
-  border-top: 3px solid gray;
+  border-top: 2px solid gray;
   position: relative;
   transition: all 200ms ease-in;
 }
@@ -301,7 +300,7 @@ td:nth-child(4) {
   height: 20px;
   background-color: forestgreen;
   border-radius: 25px;
-  border: 3px solid gray;
+  border: 2px solid gray;
   position: absolute;
   top: -12px;
   left: 42%;
@@ -310,6 +309,10 @@ td:nth-child(4) {
 
 .reject span:before {
   background-color: orangered;
+}
+
+.pending span:before {
+  background-color: gray;
 }
 
 .swiper-control {

@@ -40,12 +40,12 @@ export class ViewProposalComponent implements OnInit {
     //this.proposaldata = ProposalData;
 
     this.steps = [
-      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
-      { dateLabel: '11 Oct, 2019 10:10', title: 'Rejected by PL', acceptance: false },
-      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
-      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
-      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
-      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: true },
+      { dateLabel: '10 Oct, 2019 12:10', title: 'Proposal Submit', acceptance: 'Yes' },
+      { dateLabel: '11 Oct, 2019 10:10', title: 'Rejected by PL', acceptance: 'No' },
+      { dateLabel: 'Date', title: 'Resubmit', acceptance: 'Pending' },
+      { dateLabel: 'Date', title: 'Approved by Practice Lead', acceptance: 'Pending' },
+      { dateLabel: 'Date', title: 'Approved by Pursuit Lead', acceptance: 'Pending' },
+      { dateLabel: 'Date', title: 'Accepted by Delivery Lead', acceptance: 'Pending' }
     ];
     
     this.RequestJourney = [
